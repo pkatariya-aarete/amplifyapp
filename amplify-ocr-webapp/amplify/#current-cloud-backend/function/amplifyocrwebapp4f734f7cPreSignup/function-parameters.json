@@ -1,0 +1,14 @@
+{
+    "trigger": true,
+    "modules": [
+        "email-filter-whitelist"
+    ],
+    "parentResource": "amplifyocrwebapp4f734f7c",
+    "functionName": "amplifyocrwebapp4f734f7cPreSignup",
+    "parentStack": "auth",
+    "triggerEnvs": "[]",
+    "triggerTemplate": "PreSignup.json.ejs",
+    "roleName": "amplifyocrwebapp4f734f7cPreSignup",
+    "skipEdit": true,
+    "resourceName": "amplifyocrwebapp4f734f7cPreSignup"
+}

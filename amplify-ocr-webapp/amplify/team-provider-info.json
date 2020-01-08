@@ -1,0 +1,25 @@
+{
+    "test": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-amplify-ocr-webapp-test-160103-authRole",
+            "UnauthRoleArn": "arn:aws:iam::094717603583:role/amplify-amplify-ocr-webapp-test-160103-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::094717603583:role/amplify-amplify-ocr-webapp-test-160103-authRole",
+            "Region": "us-east-1",
+            "DeploymentBucketName": "amplify-amplify-ocr-webapp-test-160103-deployment",
+            "UnauthRoleName": "amplify-amplify-ocr-webapp-test-160103-unauthRole",
+            "StackName": "amplify-amplify-ocr-webapp-test-160103",
+            "StackId": "arn:aws:cloudformation:us-east-1:094717603583:stack/amplify-amplify-ocr-webapp-test-160103/5536afa0-20b8-11ea-9dc4-12cb3b0f9c64",
+            "AmplifyAppId": "d1ehokg6jq2m1t"
+        },
+        "categories": {
+            "function": {
+                "amplifyocrwebapp4f734f7cPreSignup": {
+                    "DOMAINWHITELIST": "aarete.com"
+                }
+            },
+            "auth": {
+                "amplifyocrwebapp4f734f7c": {}
+            }
+        }
+    }
+}

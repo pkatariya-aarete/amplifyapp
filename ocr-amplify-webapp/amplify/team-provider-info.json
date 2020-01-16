@@ -1,27 +1,27 @@
 {
-    "dev": {
+    "devv": {
         "awscloudformation": {
-            "AuthRoleName": "amplify-ocr-amplify-webapp-dev-183509-authRole",
-            "UnauthRoleArn": "arn:aws:iam::094717603583:role/amplify-ocr-amplify-webapp-dev-183509-unauthRole",
-            "AuthRoleArn": "arn:aws:iam::094717603583:role/amplify-ocr-amplify-webapp-dev-183509-authRole",
+            "AuthRoleName": "ocr-amplify-webapp-devv-20200115233307-authRole",
+            "UnauthRoleArn": "arn:aws:iam::094717603583:role/ocr-amplify-webapp-devv-20200115233307-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::094717603583:role/ocr-amplify-webapp-devv-20200115233307-authRole",
             "Region": "us-east-1",
-            "DeploymentBucketName": "amplify-ocr-amplify-webapp-dev-183509-deployment",
-            "UnauthRoleName": "amplify-ocr-amplify-webapp-dev-183509-unauthRole",
-            "StackName": "amplify-ocr-amplify-webapp-dev-183509",
-            "StackId": "arn:aws:cloudformation:us-east-1:094717603583:stack/amplify-ocr-amplify-webapp-dev-183509/d8685ff0-33a9-11ea-b0fe-12e727a79a85",
-            "AmplifyAppId": "d9oeq4t2ip2i6"
+            "DeploymentBucketName": "ocr-amplify-webapp-devv-20200115233307-deployment",
+            "UnauthRoleName": "ocr-amplify-webapp-devv-20200115233307-unauthRole",
+            "StackName": "ocr-amplify-webapp-devv-20200115233307",
+            "StackId": "arn:aws:cloudformation:us-east-1:094717603583:stack/ocr-amplify-webapp-devv-20200115233307/4b4ac2b0-3819-11ea-97d3-0ed829f607b4",
+            "AmplifyAppId": "d1zorovqwrd3ia"
         },
         "categories": {
             "function": {
-                "ocramplifywebapp8672d831PostConfirmation": {
+                "ocramplifywebapp17fe710aPostConfirmation": {
                     "GROUP": "client-group1"
                 },
-                "ocramplifywebapp8672d831PreSignup": {
+                "ocramplifywebapp17fe710aPreSignup": {
                     "DOMAINWHITELIST": "aarete.com"
                 }
             },
             "auth": {
-                "ocramplifywebapp8672d831": {}
+                "ocramplifywebapp17fe710a": {}
             }
         }
     }

@@ -1,30 +1,24 @@
 {
-	"hosting": {
-		"S3AndCloudFront": {
-			"service": "S3AndCloudFront",
-			"providerPlugin": "awscloudformation"
-		}
-	},
 	"function": {
-		"ocramplifywebapp8672d831PostConfirmation": {
+		"ocramplifywebapp17fe710aPostConfirmation": {
 			"service": "Lambda",
 			"providerPlugin": "awscloudformation",
 			"build": true
 		},
-		"ocramplifywebapp8672d831PreSignup": {
+		"ocramplifywebapp17fe710aPreSignup": {
 			"service": "Lambda",
 			"providerPlugin": "awscloudformation",
 			"build": true
 		}
 	},
 	"auth": {
-		"ocramplifywebapp8672d831": {
+		"ocramplifywebapp17fe710a": {
 			"service": "Cognito",
 			"providerPlugin": "awscloudformation",
 			"dependsOn": [
 				{
 					"category": "function",
-					"resourceName": "ocramplifywebapp8672d831PostConfirmation",
+					"resourceName": "ocramplifywebapp17fe710aPostConfirmation",
 					"triggerProvider": "Cognito",
 					"attributes": [
 						"Arn",
@@ -33,7 +27,7 @@
 				},
 				{
 					"category": "function",
-					"resourceName": "ocramplifywebapp8672d831PreSignup",
+					"resourceName": "ocramplifywebapp17fe710aPreSignup",
 					"triggerProvider": "Cognito",
 					"attributes": [
 						"Arn",
@@ -44,8 +38,14 @@
 		}
 	},
 	"storage": {
-		"OCRUploadFileS3Bucket1": {
+		"s3uploadfunction": {
 			"service": "S3",
+			"providerPlugin": "awscloudformation"
+		}
+	},
+	"hosting": {
+		"S3AndCloudFront": {
+			"service": "S3AndCloudFront",
 			"providerPlugin": "awscloudformation"
 		}
 	}

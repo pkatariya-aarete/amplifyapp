@@ -8,6 +8,6 @@ exports.handler = (event, context, callback) => {
   if (!wld.includes(domain)) {
     callback(new Error(`Invalid email domain: ${domain}`), event);
   } else {
-    callback(null, event);
+    //callback(null, event);
   }
 };

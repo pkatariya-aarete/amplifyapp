@@ -47,7 +47,7 @@ export class CustomSignIn extends SignIn {
         .catch(err => {
           console.log(err);
           let msg =
-            "The credentials provided are not valid. <br/>Please try logging in again.";
+            "The credentials provided are not valid. Please try logging in again.";
           this.showAlert(msg);
         });
     }
@@ -60,13 +60,13 @@ export class CustomSignIn extends SignIn {
     //Username
     if (document.getElementById("username").value.trim() === "") {
       document.getElementById("username").focus();
-      msg = "Please enter username.";
+      msg = "Please enter Username.";
       flag = true;
     }
     //Password
     else if (document.getElementById("password").value.trim() === "") {
       document.getElementById("password").focus();
-      msg = "Please enter password.";
+      msg = "Please enter Password.";
       flag = true;
     }
 

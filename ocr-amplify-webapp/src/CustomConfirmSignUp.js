@@ -34,7 +34,7 @@ export class CustomConfirmSignUp extends ConfirmSignUp {
     const { username } = this.state;
     Auth.resendSignUp(username)
       .then(() => {
-        this.showAlert("Code resent successfully");
+        this.showAlert("Confirmation Code resent successfully.");
       })
       .catch(e => {
         console.log(e);
@@ -76,11 +76,11 @@ export class CustomConfirmSignUp extends ConfirmSignUp {
     //Code
     else if (document.getElementById("code").value.trim() === "") {
       document.getElementById("code").focus();
-      msg = "Please enter 6 digit code.";
+      msg = "Please enter Code.";
       flag = true;
     }
     //Check code length
-    else if (document.getElementById("code").value.trim().length < 6) {
+    else if (document.getElementById("code").value.trim().length !== 6) {
       document.getElementById("code").focus();
       msg = "Please enter valid 6 digit code.";
       flag = true;

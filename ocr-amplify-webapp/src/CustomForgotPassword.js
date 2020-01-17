@@ -71,50 +71,67 @@ export class CustomForgotPassword extends ForgotPassword {
     let passwordLengthElement = document.getElementById("password-length");
     let passwordInputElement = document.getElementById("rpwd-new_password");
 
-    let lowerCaseLetters = /[a-z]/g;
-    let upperCaseLetters = /[A-Z]/g;
-    if (pwd.match(lowerCaseLetters) || pwd.match(upperCaseLetters)) {
+    if (pwd.length === 0) {
       passwordAlphabetElement.classList.remove("invalid");
-      passwordAlphabetElement.classList.add("valid");
-      flag.alphabet = true;
-    } else {
-      passwordAlphabetElement.classList.remove("valid");
-      passwordAlphabetElement.classList.add("invalid");
-    }
-
-    let numbers = /[0-9]/g;
-    if (pwd.match(numbers)) {
       passwordNumberElement.classList.remove("invalid");
-      passwordNumberElement.classList.add("valid");
-      flag.number = true;
-    } else {
-      passwordNumberElement.classList.remove("valid");
-      passwordNumberElement.classList.add("invalid");
-    }
-
-    let specialCharaterFormat = /[ !@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/;
-    if (pwd.match(specialCharaterFormat)) {
       passwordSpecialChar.classList.remove("invalid");
-      passwordSpecialChar.classList.add("valid");
-      flag.specialCharacter = true;
-    } else {
-      passwordSpecialChar.classList.add("invalid");
-      passwordSpecialChar.classList.remove("valid");
-    }
-
-    if (pwd.length >= 8) {
-      passwordInputElement.focus();
       passwordLengthElement.classList.remove("invalid");
-      passwordLengthElement.classList.add("valid");
-      flag.length = true;
-    } else {
-      passwordInputElement.focus();
-      passwordLengthElement.classList.remove("valid");
-      passwordLengthElement.classList.add("invalid");
-    }
 
-    //Password Criteria
-    if (pwd != "") {
+      passwordAlphabetElement.classList.remove("valid");
+      passwordNumberElement.classList.remove("valid");
+      passwordSpecialChar.classList.remove("valid");
+      passwordLengthElement.classList.remove("valid");
+
+      document
+        .getElementById("rpwd-new_password")
+        .classList.remove("error-password");
+      document
+        .getElementById("rpwd-new_password")
+        .classList.remove("success-password");
+    } else {
+      let lowerCaseLetters = /[a-z]/g;
+      let upperCaseLetters = /[A-Z]/g;
+      if (pwd.match(lowerCaseLetters) || pwd.match(upperCaseLetters)) {
+        passwordAlphabetElement.classList.remove("invalid");
+        passwordAlphabetElement.classList.add("valid");
+        flag.alphabet = true;
+      } else {
+        passwordAlphabetElement.classList.remove("valid");
+        passwordAlphabetElement.classList.add("invalid");
+      }
+
+      let numbers = /[0-9]/g;
+      if (pwd.match(numbers)) {
+        passwordNumberElement.classList.remove("invalid");
+        passwordNumberElement.classList.add("valid");
+        flag.number = true;
+      } else {
+        passwordNumberElement.classList.remove("valid");
+        passwordNumberElement.classList.add("invalid");
+      }
+
+      let specialCharaterFormat = /[ !@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/;
+      if (pwd.match(specialCharaterFormat)) {
+        passwordSpecialChar.classList.remove("invalid");
+        passwordSpecialChar.classList.add("valid");
+        flag.specialCharacter = true;
+      } else {
+        passwordSpecialChar.classList.add("invalid");
+        passwordSpecialChar.classList.remove("valid");
+      }
+
+      if (pwd.length >= 8) {
+        passwordInputElement.focus();
+        passwordLengthElement.classList.remove("invalid");
+        passwordLengthElement.classList.add("valid");
+        flag.length = true;
+      } else {
+        passwordInputElement.focus();
+        passwordLengthElement.classList.remove("valid");
+        passwordLengthElement.classList.add("invalid");
+      }
+
+      //Password Criteria
       if (
         flag.alphabet &&
         flag.number &&
@@ -135,8 +152,6 @@ export class CustomForgotPassword extends ForgotPassword {
           .getElementById("rpwd-new_password")
           .classList.add("error-password");
       }
-    } else {
-      //pwdMsgElement.innerHTML = "";
     }
   };
 
@@ -154,7 +169,7 @@ export class CustomForgotPassword extends ForgotPassword {
           console.log(err);
 
           if (err.code === "UserNotFoundException") {
-            this.showAlert("User not found!");
+            this.showAlert("The Username doesn't exist. Please try again.");
             document.getElementById("username").focus();
           } else {
             this.showAlert(err.message);
@@ -177,12 +192,14 @@ export class CustomForgotPassword extends ForgotPassword {
           console.log(err);
 
           if (err.code === "CodeMismatchException") {
-            this.showAlert("Code not matched! Please enter correct code");
+            this.showAlert(
+              "Code does not matched. Please enter the correct code."
+            );
             document.getElementById("rpwd-code").focus();
           } else if (err.code === "InvalidParameterException") {
-            this.showAlert("Must have length greater then or equal to 6");
+            this.showAlert("Code must have length equal to 6.");
           } else {
-            this.showAlert(err.message);
+            console.log(err.message);
           }
         });
     }
@@ -213,7 +230,7 @@ export class CustomForgotPassword extends ForgotPassword {
       case 1:
         if (document.getElementById("username").value.trim() == "") {
           document.getElementById("username").focus();
-          msg = "Please enter username.";
+          msg = "Please enter Username.";
           flag = true;
         }
         break;
@@ -221,7 +238,7 @@ export class CustomForgotPassword extends ForgotPassword {
         //Code
         if (document.getElementById("rpwd-code").value.trim() == "") {
           document.getElementById("rpwd-code").focus();
-          msg = "Please enter code.";
+          msg = "Please enter Code.";
           flag = true;
         }
         //Code length should be 8
@@ -229,7 +246,7 @@ export class CustomForgotPassword extends ForgotPassword {
           document.getElementById("rpwd-code").value.trim().length !== 6
         ) {
           document.getElementById("rpwd-code").focus();
-          msg = "Reset code should be 6 digit.";
+          msg = "Reset Code should be 6 digits.";
           flag = true;
         }
         //Password
@@ -237,18 +254,8 @@ export class CustomForgotPassword extends ForgotPassword {
           document.getElementById("rpwd-new_password").value.trim() == ""
         ) {
           document.getElementById("rpwd-new_password").focus();
-          msg = "Please enter password.";
+          msg = "Please enter Password.";
           flag = true;
-        }
-        //Password Special Character Check
-        else if (
-          this.isSpecialCharacter(
-            document.getElementById("rpwd-new_password").value.trim()
-          )
-        ) {
-          document.getElementById("password").focus();
-          flag = true;
-          msg = "Special characters are not allowed in password.";
         }
         //Password Criteria
         else if (
@@ -256,13 +263,30 @@ export class CustomForgotPassword extends ForgotPassword {
         ) {
           let pwd = document.getElementById("rpwd-new_password").value.trim();
           if (pwd.length < 8) {
-            msg = "Password length should be atleast 8 characters";
+            msg =
+              "Password length should be at least 8 character. Please try again.";
             document.getElementById("rpwd-new_password").focus();
             flag = true;
-          } else if (!this.isAlphaNumeric(pwd)) {
+          }
+          //Password Special Character Check
+          else if (!this.isSpecialCharacter(pwd)) {
             document.getElementById("rpwd-new_password").focus();
             flag = true;
-            msg = "Password should be alphanumeric";
+            msg =
+              "Password should contain at least 1 special character. Please try again.";
+          }
+          //Password contains alphabet
+          else if (!this.isAlphabet(pwd)) {
+            document.getElementById("rpwd-new_password").focus();
+            flag = true;
+            msg =
+              "Password should contain atleast 1 alphabet. Please try again.";
+          }
+          //Password contains numbers
+          else if (!this.isNumber(pwd)) {
+            document.getElementById("rpwd-new_password").focus();
+            flag = true;
+            msg = "Password should contain atleast 1 number. Please try again.";
           }
         }
         break;
@@ -272,23 +296,6 @@ export class CustomForgotPassword extends ForgotPassword {
       this.showAlert(msg);
     }
     return flag;
-  }
-
-  isSpecialCharacter(str) {
-    var code, i, len;
-
-    for (i = 0, len = str.length; i < len; i++) {
-      code = str.charCodeAt(i);
-
-      if (
-        !(code > 47 && code < 58) && // numeric (0-9)
-        !(code > 64 && code < 91) && // upper alpha (A-Z)
-        !(code > 96 && code < 123) // lower alpha (a-z)
-      ) {
-        return true;
-      }
-    }
-    return false;
   }
 
   isSpecialCharacter(str) {
@@ -408,16 +415,16 @@ export class CustomForgotPassword extends ForgotPassword {
                 <div id="message">
                   <span>Password must contain the following:</span>
 
-                  <p id="password-alphabet" class="invalid">
+                  <p id="password-alphabet" class="default ">
                     Atleast 1 <b>character</b>
                   </p>
-                  <p id="password-number" class="invalid">
+                  <p id="password-number" class="default">
                     Atleast 1 <b>number</b>
                   </p>
-                  <p id="password-specialCharacter" class="invalid">
+                  <p id="password-specialCharacter" class="default">
                     Atleast 1 <b>special characters</b>
                   </p>
-                  <p id="password-length" class="invalid">
+                  <p id="password-length" class="default">
                     Minimum length <b>8 characters</b>
                   </p>
                 </div>

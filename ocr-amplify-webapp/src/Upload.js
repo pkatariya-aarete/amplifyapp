@@ -23,50 +23,60 @@ class Upload extends React.Component {
 
   uploadFile(event) {
     let files = event.target.files;
-
-    //Logic to push uploaded files into global files array (fileDetails)
     let filesTempArray = [];
-    for (let i = 0; i < files.length; i++) {
-      filesTempArray.push(files[i]);
-    }
-    this.setState({
-      fileDetails: this.state.fileDetails.concat(filesTempArray)
-    });
-
-    //Logic to show file list
     let list = [];
-    for (let i = 0; i < files.length; i++) {
-      list = list.concat(files[i].name);
-    }
-
-    if (this.state.fileList.length) {
-      this.setState({
-        fileList: this.state.fileList.concat(list)
-      });
-    } else {
-      this.setState({
-        fileList: list
-      });
-    }
+    let validFileCount = 0;
+    let duplicateFileCount = 0;
 
     if (files.length) {
-      document.getElementById("submit-file-msg-id").style.display = "block";
-      let data = new FormData();
+      for (let i = 0; i < files.length; i++) {
+        //duplicate file check
+        let file = files[i];
+        if (!this.state.fileList.includes(file.name)) {
+          list = list.concat(files[i].name);
 
-      data.append("file", files);
+          filesTempArray.push(files[i]);
+
+          validFileCount++;
+        } else {
+          duplicateFileCount++;
+          console.log("Duplicate file : " + file.name);
+        }
+      }
+
+      //Logic to push uploaded files into global files array (fileDetails)
+      this.setState({
+        fileDetails: this.state.fileDetails.concat(filesTempArray)
+      });
+
+      //Logic to show file list
+      if (this.state.fileList.length) {
+        this.setState({
+          fileList: this.state.fileList.concat(list)
+        });
+      } else {
+        this.setState({
+          fileList: list
+        });
+      }
+
+      document.getElementById("upload_file_status").innerHTML =
+        "Press <span>Submit</span> to Upload or <span>Clear All</span> to delete all files.";
+      document.getElementById("submit-file-msg-id").style.display = "block";
+
       if (this.state.fileList.length) {
         this.setState({
           fileName:
-            files.length + this.state.fileList.length + "  Files Selected"
+            validFileCount + this.state.fileList.length + "  Files Selected"
         });
       } else {
         if (files.length > 1) {
           this.setState({
-            fileName: files.length + "  Files Selected"
+            fileName: validFileCount + "  Files Selected"
           });
         } else {
           this.setState({
-            fileName: files.length + "  File Selected"
+            fileName: validFileCount + "  File Selected"
           });
         }
       }
@@ -82,6 +92,16 @@ class Upload extends React.Component {
         document.getElementById("submit-file-msg-id").style.display = "none";
       }
     }
+
+    if (duplicateFileCount) {
+      this.showAlert(
+        duplicateFileCount +
+          " file(s) is duplicate. Please try uploading new files."
+      );
+    }
+
+    //clear files from input type file
+    event.target.value = "";
   }
 
   clearAllFiles() {
@@ -171,6 +191,7 @@ class Upload extends React.Component {
         })
         .catch(err => {
           console.log(err);
+          this.showAlert("There was error in uploading files to server.");
         });
     }
     uploadFileCount = 0;
@@ -202,6 +223,7 @@ class Upload extends React.Component {
     let allowedFileExtension = ["pdf", "docx"];
     let invalidFilesCount = 0;
     let validFilesCount = 0;
+    let duplicateFilesCount = 0;
 
     if (e.dataTransfer.items.length) {
       var files = e.dataTransfer.files;
@@ -211,21 +233,24 @@ class Upload extends React.Component {
       for (let i = 0; i < files.length; i++) {
         let fileExtension = files[i].name.replace(/^.*\./, "");
         let fileType = files[i].type;
+        let fileName = files[i].name;
 
         //validation of file type
         if (
           allowedFileExtension.indexOf(fileExtension) !== -1 &&
           allowedFileType.indexOf(fileType) !== -1
         ) {
-          /*Block for valid files*/
-
-          filesTempArray.push(files[i]);
-          droppedFilesList = droppedFilesList.concat(files[i].name);
-
-          validFilesCount++;
+          if (!this.state.fileList.includes(fileName)) {
+            //valid files
+            filesTempArray.push(files[i]);
+            droppedFilesList = droppedFilesList.concat(files[i].name);
+            validFilesCount++;
+          } else {
+            //duplicate files
+            duplicateFilesCount++;
+          }
         } else {
-          /*Block for invalid files*/
-
+          //Invalid format files
           invalidFilesCount++;
         }
       }
@@ -278,10 +303,22 @@ class Upload extends React.Component {
     }
 
     //Show message for invalid files
-    if (invalidFilesCount) {
-      let msg =
-        invalidFilesCount +
-        " file(s) have an invalid format. Please ensure all files are either in DOCX or PDF format.";
+    if (invalidFilesCount || duplicateFilesCount) {
+      let msg = "";
+      if (invalidFilesCount > 0 && duplicateFilesCount === 0) {
+        msg =
+          invalidFilesCount +
+          " file(s) have an invalid format. Please ensure all files are either in DOCX or PDF format.";
+      } else if (invalidFilesCount === 0 && duplicateFilesCount > 0) {
+        msg =
+          duplicateFilesCount +
+          " file(s) already exist. Please ensure you upload new files.";
+      } else {
+        msg =
+          invalidFilesCount +
+          duplicateFilesCount +
+          " file(s) have an invalid format or they are duplicate. Please ensure all files are new and are either in DOCX or PDF format.";
+      }
       this.showAlert(msg);
     }
   };

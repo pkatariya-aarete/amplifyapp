@@ -6,7 +6,7 @@ exports.handler = (event, context, callback) => {
   const domain = email.substring(email.indexOf('@') + 1);
 
   if (!wld.includes(domain)) {
-    callback(new Error(`Invalid email domain: ${domain}`), event);
+    callback(new Error(`InvalidEmailDomain`), event);
   } else {
     //callback(null, event);
   }

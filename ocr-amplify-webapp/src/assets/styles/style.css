@@ -48,6 +48,8 @@
   line-height: 26px;
   margin-bottom: 16px;
   padding: 0 5%;
+  outline-width: 2px;
+  outline-color: #f19411;
 }
 .createAccount {
   border-radius: 4.54px;
@@ -183,10 +185,11 @@ button,
 }
 input#password:focus,
 input#rpwd-new_password:focus {
-  outline: none;
+  /*outline: none;*/
 }
 #passwordTooltip span {
-  color: #f19411;
+  /*color: #f19411;*/
+  color: #ccc;
 }
 #passwordTooltip {
   color: #ccc;
@@ -195,42 +198,43 @@ input#rpwd-new_password:focus {
   line-height: 21px;
   width: 260px;
   /* margin: -58px 3px 0 241px; */
-  margin: 0px 3px 0px 12px;
+  margin: 0px 3px 0px 20px;
   display: none;
 }
 .reset-password-passwordTooltip {
   margin: -70px 0px 0px 242px !important;
 }
 #passwordTooltip .default {
-  color: gray;
-  padding-left: 10px;
+  color: #646464;
+  /*padding-left: 10px;*/
 }
 #passwordTooltip .default:before {
   position: relative;
-  left: -9px;
-  content: "✖";
+  /*left: -9px;*/
+  /*content: "✖";*/
 }
 #passwordTooltip .valid {
-  color: green !important;
-  padding-left: 10px;
+  color: #e76124 !important;
+  /*padding-left: 10px;*/
+  margin-left: -11px;
 }
 
 #passwordTooltip .valid:before {
   position: relative;
-  left: -9px;
+  left: -6px;
   content: "✔";
 }
 
 /* Add a red text color and an "x" when the requirements are wrong */
 #passwordTooltip .invalid {
-  color: #ff5353 !important;
-  padding-left: 10px;
+  color: #646464 !important;
+  /*padding-left: 10px;*/
 }
 
 #passwordTooltip .invalid:before {
   position: relative;
-  left: -9px;
-  content: "✖";
+  /*left: -9px;*/
+  /*content: "✖";*/
 }
 
 @media screen and (min-width: 1400px) {

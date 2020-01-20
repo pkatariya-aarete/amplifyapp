@@ -214,7 +214,7 @@ input#rpwd-new_password:focus {
   /*content: "✖";*/
 }
 #passwordTooltip .valid {
-  color: #e76124 !important;
+  color: green !important;
   /*padding-left: 10px;*/
   margin-left: -11px;
 }

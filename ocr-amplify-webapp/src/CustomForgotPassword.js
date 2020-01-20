@@ -63,7 +63,7 @@ export class CustomForgotPassword extends ForgotPassword {
       length: false
     };
 
-    let passwordAlphabetElement = document.getElementById("password-alphabet");
+    //let passwordAlphabetElement = document.getElementById("password-alphabet");
     let passwordNumberElement = document.getElementById("password-number");
     let passwordSpecialChar = document.getElementById(
       "password-specialCharacter"
@@ -72,33 +72,29 @@ export class CustomForgotPassword extends ForgotPassword {
     let passwordInputElement = document.getElementById("rpwd-new_password");
 
     if (pwd.length === 0) {
-      passwordAlphabetElement.classList.remove("invalid");
+      //passwordAlphabetElement.classList.remove("invalid");
       passwordNumberElement.classList.remove("invalid");
       passwordSpecialChar.classList.remove("invalid");
       passwordLengthElement.classList.remove("invalid");
 
-      passwordAlphabetElement.classList.remove("valid");
+      //passwordAlphabetElement.classList.remove("valid");
       passwordNumberElement.classList.remove("valid");
       passwordSpecialChar.classList.remove("valid");
       passwordLengthElement.classList.remove("valid");
 
-      document
-        .getElementById("rpwd-new_password")
-        .classList.remove("error-password");
-      document
-        .getElementById("rpwd-new_password")
-        .classList.remove("success-password");
+      //document.getElementById("rpwd-new_password").classList.remove("error-password");
+      //document.getElementById("rpwd-new_password").classList.remove("success-password");
     } else {
       let lowerCaseLetters = /[a-z]/g;
       let upperCaseLetters = /[A-Z]/g;
-      if (pwd.match(lowerCaseLetters) || pwd.match(upperCaseLetters)) {
-        passwordAlphabetElement.classList.remove("invalid");
-        passwordAlphabetElement.classList.add("valid");
-        flag.alphabet = true;
-      } else {
-        passwordAlphabetElement.classList.remove("valid");
-        passwordAlphabetElement.classList.add("invalid");
-      }
+      // if (pwd.match(lowerCaseLetters) || pwd.match(upperCaseLetters)) {
+      //   passwordAlphabetElement.classList.remove("invalid");
+      //   passwordAlphabetElement.classList.add("valid");
+      //   flag.alphabet = true;
+      // } else {
+      //   passwordAlphabetElement.classList.remove("valid");
+      //   passwordAlphabetElement.classList.add("invalid");
+      // }
 
       let numbers = /[0-9]/g;
       if (pwd.match(numbers)) {
@@ -138,19 +134,11 @@ export class CustomForgotPassword extends ForgotPassword {
         flag.length &&
         flag.specialCharacter
       ) {
-        document
-          .getElementById("rpwd-new_password")
-          .classList.remove("error-password");
-        document
-          .getElementById("rpwd-new_password")
-          .classList.add("success-password");
+        //document.getElementById("rpwd-new_password").classList.remove("error-password");
+        //document.getElementById("rpwd-new_password").classList.add("success-password");
       } else {
-        document
-          .getElementById("rpwd-new_password")
-          .classList.remove("success-password");
-        document
-          .getElementById("rpwd-new_password")
-          .classList.add("error-password");
+        //document.getElementById("rpwd-new_password").classList.remove("success-password");
+        //document.getElementById("rpwd-new_password").classList.add("error-password");
       }
     }
   };
@@ -415,17 +403,17 @@ export class CustomForgotPassword extends ForgotPassword {
                 <div id="message">
                   <span>Password must contain the following:</span>
 
-                  <p id="password-alphabet" class="default ">
+                  {/* <p id="password-alphabet" class="default ">
                     Atleast 1 <b>character</b>
-                  </p>
+                  </p> */}
                   <p id="password-number" class="default">
-                    Atleast 1 <b>number</b>
+                    At least 1 <b>number</b>
                   </p>
                   <p id="password-specialCharacter" class="default">
-                    Atleast 1 <b>special characters</b>
+                    At least 1 <b>special character</b>
                   </p>
                   <p id="password-length" class="default">
-                    Minimum length <b>8 characters</b>
+                    Minimum length of <b>8 letters</b>
                   </p>
                 </div>
               </p>

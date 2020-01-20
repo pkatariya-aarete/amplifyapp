@@ -178,7 +178,8 @@ button,
   font-size: 14px;
 }
 .success-password {
-  border: 2px solid #008000 !important;
+  /*border: 2px solid #008000 !important;*/
+  outline-color: #008000 !important;
 }
 .error-password {
   border: 2px solid #ff5353 !important;
@@ -214,7 +215,7 @@ input#rpwd-new_password:focus {
   /*content: "✖";*/
 }
 #passwordTooltip .valid {
-  color: green !important;
+  color: #008000 !important;
   /*padding-left: 10px;*/
   margin-left: -11px;
 }

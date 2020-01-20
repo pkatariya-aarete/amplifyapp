@@ -87,14 +87,14 @@ export class CustomForgotPassword extends ForgotPassword {
     } else {
       let lowerCaseLetters = /[a-z]/g;
       let upperCaseLetters = /[A-Z]/g;
-      // if (pwd.match(lowerCaseLetters) || pwd.match(upperCaseLetters)) {
-      //   passwordAlphabetElement.classList.remove("invalid");
-      //   passwordAlphabetElement.classList.add("valid");
-      //   flag.alphabet = true;
-      // } else {
-      //   passwordAlphabetElement.classList.remove("valid");
-      //   passwordAlphabetElement.classList.add("invalid");
-      // }
+      if (pwd.match(lowerCaseLetters) || pwd.match(upperCaseLetters)) {
+        //passwordAlphabetElement.classList.remove("invalid");
+        //passwordAlphabetElement.classList.add("valid");
+        flag.alphabet = true;
+      } else {
+        //passwordAlphabetElement.classList.remove("valid");
+        //passwordAlphabetElement.classList.add("invalid");
+      }
 
       let numbers = /[0-9]/g;
       if (pwd.match(numbers)) {
@@ -135,9 +135,13 @@ export class CustomForgotPassword extends ForgotPassword {
         flag.specialCharacter
       ) {
         //document.getElementById("rpwd-new_password").classList.remove("error-password");
-        //document.getElementById("rpwd-new_password").classList.add("success-password");
+        document
+          .getElementById("rpwd-new_password")
+          .classList.add("success-password");
       } else {
-        //document.getElementById("rpwd-new_password").classList.remove("success-password");
+        document
+          .getElementById("rpwd-new_password")
+          .classList.remove("success-password");
         //document.getElementById("rpwd-new_password").classList.add("error-password");
       }
     }
@@ -413,7 +417,7 @@ export class CustomForgotPassword extends ForgotPassword {
                     At least 1 <b>special character</b>
                   </p>
                   <p id="password-length" class="default">
-                    Minimum length of <b>8 letters</b>
+                    Minimum length of <b>8 characters</b>
                   </p>
                 </div>
               </p>

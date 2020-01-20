@@ -145,9 +145,11 @@ export class CustomSignUp extends SignUp {
         flag.specialCharacter
       ) {
         //document.getElementById("password").classList.remove("error-password");
-        //document.getElementById("password").classList.add("success-password");
+        document.getElementById("password").classList.add("success-password");
       } else {
-        //document.getElementById("password").classList.remove("success-password");
+        document
+          .getElementById("password")
+          .classList.remove("success-password");
         //document.getElementById("password").classList.add("error-password");
       }
     }
@@ -420,7 +422,7 @@ export class CustomSignUp extends SignUp {
                   At least 1 <b>special character</b>
                 </p>
                 <p id="password-length" class="default ">
-                  Minimum length of <b>8 letters</b>
+                  Minimum length of <b>8 characters</b>
                 </p>
               </div>
             </p>

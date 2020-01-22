@@ -2,7 +2,7 @@ import React from "react";
 import { ForgotPassword } from "aws-amplify-react";
 import { Auth } from "aws-amplify";
 
-export class CustomForgotPassword extends ForgotPassword {
+class ForgotPasswordComponent extends ForgotPassword {
   state = {
     username: "",
     code: "",
@@ -357,9 +357,6 @@ export class CustomForgotPassword extends ForgotPassword {
     return (
       <div className="signin-container">
         <div id="snackbar">Some text some message..</div>
-        <div className="projectName m-bottom">
-          OCR <span className="subHead">Automation App</span>
-        </div>
         <div className="page-Title">Reset your password</div>
         <div className="field-container">
           <div className="filedDevide">
@@ -459,3 +456,5 @@ export class CustomForgotPassword extends ForgotPassword {
     );
   }
 }
+
+export default ForgotPasswordComponent;

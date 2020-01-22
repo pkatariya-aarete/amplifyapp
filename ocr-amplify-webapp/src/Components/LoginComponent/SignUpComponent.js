@@ -3,16 +3,17 @@ import { SignUp } from "aws-amplify-react";
 import { Auth } from "aws-amplify";
 
 //Register
-export class CustomSignUp extends SignUp {
+class SignUpComponent extends SignUp {
   constructor(props) {
     super(props);
   }
   state = {
-    firstName: "",
-    lastName: "",
-    username: "",
-    password: "",
-    email: ""
+    name: '',
+    family_name: '',
+    username: '',
+    password: '',
+    email: '',
+    submitBtnStatus: false
   };
 
   onChange = e => {
@@ -20,33 +21,18 @@ export class CustomSignUp extends SignUp {
       [e.target.name]: e.target.value
     });
 
-    let name = document.getElementById("name");
-    let family_name = document.getElementById("family_name");
-    let email = document.getElementById("email");
-    let password = document.getElementById("password");
-    let username = document.getElementById("username");
-
     if (
-      username.value.trim().length &&
-      password.value.trim().length &&
-      name.value.trim().length &&
-      family_name.value.trim().length &&
-      email.value.trim().length
-    ) {
-      document.getElementById("signUpButton").classList.remove("disabled");
-    } else {
-      if (
-        !document.getElementById("signUpButton").classList.contains("disabled")
-      ) {
-        document.getElementById("signUpButton").classList.add("disabled");
+      (this.state.name && this.state.family_name &&
+      this.state.username && this.state.password &&
+      this.state.email) === '') {
+        this.setState({submitBtnStatus: true})
       }
+    else {
+      this.setState({submitBtnStatus: false})
     }
   };
 
   onBlurPasswordValidation = e => {
-    //let pwdMsgElement = document.getElementById("password-error-message");
-    //pwdMsgElement.innerHTML = "";
-
     let passInput = document.getElementById("password");
     if (passInput.classList.contains("success-password")) {
       passInput.classList.remove("success-password");
@@ -55,15 +41,12 @@ export class CustomSignUp extends SignUp {
     document.getElementById("passwordTooltip").style.display = "none";
   };
   onFocusPasswordValidation = e => {
-    //let pwdMsgElement = document.getElementById("password-error-message");
-    //pwdMsgElement.innerHTML = "";
-
     document.getElementById("passwordTooltip").style.display = "block";
   };
 
   onKeyUpPasswordValidation = e => {
+    console.log(e)
     let pwd = e.target.value.trim();
-    //let msg = "Valid Password!";
     let flag = {
       alphabet: false,
       number: false,
@@ -73,27 +56,32 @@ export class CustomSignUp extends SignUp {
 
     //let pwdMsgElement = document.getElementById("password-error-message");
 
-    //let passwordAlphabetElement = document.getElementById("password-alphabet");
+    let passwordAlphabetElement = document.getElementById("password-alphabet");
     let passwordNumberElement = document.getElementById("password-number");
     let passwordSpecialChar = document.getElementById(
       "password-specialCharacter"
     );
     let passwordLengthElement = document.getElementById("password-length");
     let passwordInputElement = document.getElementById("password");
+    
+    const validColor = 'valid';
+    const invalidColor = 'invalid';
+    //const defaulColor = 'valid';
 
     if (pwd.length === 0) {
-      //passwordAlphabetElement.classList.remove("invalid");
+      //pwdCss = validColor
+      passwordAlphabetElement.classList.remove("invalid");
       passwordNumberElement.classList.remove("invalid");
       passwordSpecialChar.classList.remove("invalid");
       passwordLengthElement.classList.remove("invalid");
 
-      //passwordAlphabetElement.classList.remove("valid");
+      passwordAlphabetElement.classList.remove("valid");
       passwordNumberElement.classList.remove("valid");
       passwordSpecialChar.classList.remove("valid");
       passwordLengthElement.classList.remove("valid");
 
-      //document.getElementById("password").classList.remove("error-password");
-      //document.getElementById("password").classList.remove("success-password");
+      document.getElementById("password").classList.remove("error-password");
+      document.getElementById("password").classList.remove("success-password");
     } else {
       if (pwd.length >= 8) {
         passwordInputElement.focus();
@@ -109,12 +97,12 @@ export class CustomSignUp extends SignUp {
       let lowerCaseLetters = /[a-z]/g;
       let upperCaseLetters = /[A-Z]/g;
       if (pwd.match(lowerCaseLetters) || pwd.match(upperCaseLetters)) {
-        //passwordAlphabetElement.classList.remove("invalid");
-        //passwordAlphabetElement.classList.add("valid");
+        passwordAlphabetElement.classList.remove("invalid");
+        passwordAlphabetElement.classList.add("valid");
         flag.alphabet = true;
       } else {
-        //passwordAlphabetElement.classList.remove("valid");
-        //passwordAlphabetElement.classList.add("invalid");
+        passwordAlphabetElement.classList.remove("valid");
+        passwordAlphabetElement.classList.add("invalid");
       }
 
       let numbers = /[0-9]/g;
@@ -144,56 +132,48 @@ export class CustomSignUp extends SignUp {
         flag.length &&
         flag.specialCharacter
       ) {
-        //document.getElementById("password").classList.remove("error-password");
+        document.getElementById("password").classList.remove("error-password");
         document.getElementById("password").classList.add("success-password");
       } else {
         document
           .getElementById("password")
           .classList.remove("success-password");
-        //document.getElementById("password").classList.add("error-password");
+        document.getElementById("password").classList.add("error-password");
       }
     }
+    //return pwdCss
   };
 
   signUp(event) {
     if (!this.isDataValid()) {
       const { name, family_name, username, password, email } = this.state;
-      window.localStorage.setItem("username", username);
-
       Auth.signUp({
-        username,
+        username: email,
         password,
         attributes: {
-          email,
+          preferred_username: username,
           family_name,
           name
-        },
+          },
         validationData: []
-      })
-        .then(data => {
+        }).then(data => {
           console.log(data);
           super.changeState("confirmSignUp");
-        })
-        .catch(err => {
+        }).catch(err => {
           console.log(err);
-
+          let msg = "";
           if (err.code === "UserLambdaValidationException") {
-            let msg = "";
             if (err.message.includes("EmailAlreadyExist")) {
               msg = "The E-mail already exist. Please try again.";
-              this.showAlert(msg);
             } else if (err.message.includes("InvalidEmailDomain")) {
-              msg =
-                "The E-mail address provided does not meet the domain criteria. Please try again.";
-              this.showAlert(msg);
+              msg = "The E-mail address provided does not meet the domain criteria. Please try again.";
             }
           } else if (err.code === "UsernameExistsException") {
-            let msg = "The Username already exist. Please try again.";
-            this.showAlert(msg);
+            msg = "The Username already exist. Please try again.";
           } else if (err.code === "InvalidLambdaResponseException") {
-            let msg = "There was some error on server side. Please try again.";
-            this.showAlert(msg);
+            msg = "There was some error on server side. Please try again.";
           }
+          this.showAlert(msg);
         });
     }
   }
@@ -325,12 +305,11 @@ export class CustomSignUp extends SignUp {
   }
 
   showComponent(theme) {
+    const btnCss = this.state.submitBtnStatus ? "disabled" : ""
+    //const pwdCss = 'default'
     return (
       <div className="signup-container">
         <div id="snackbar">Some text some message..</div>
-        <div className="projectName m-bottom">
-          OCR <span className="subHead">Automation App</span>
-        </div>
         <div className="page-Title"> Create a new account </div>
         <div className="field-container">
           <div className="filedDevide">
@@ -344,6 +323,7 @@ export class CustomSignUp extends SignUp {
               className="input-fields"
               type="text"
               placeholder="John"
+              value={this.state.name}
               onChange={this.onChange}
               tabIndex="1"
             ></input>
@@ -358,6 +338,7 @@ export class CustomSignUp extends SignUp {
               className="input-fields"
               type="text"
               placeholder="john.doe"
+              value={this.state.username}
               onChange={this.onChange}
               tabIndex="3"
             ></input>
@@ -372,6 +353,7 @@ export class CustomSignUp extends SignUp {
               className="input-fields"
               type="email"
               placeholder="john.doe@aarete.com"
+              value={this.state.email}
               onChange={this.onChange}
               tabIndex="5"
             ></input>
@@ -388,6 +370,7 @@ export class CustomSignUp extends SignUp {
               className="input-fields"
               type="text"
               placeholder="Doe"
+              value={this.state.family_name}
               onChange={this.onChange}
               tabIndex="2"
             ></input>
@@ -402,6 +385,7 @@ export class CustomSignUp extends SignUp {
               className="input-fields"
               type="password"
               placeholder="******"
+              value={this.state.password}
               onChange={this.onChange}
               onKeyUp={this.onKeyUpPasswordValidation}
               onBlur={this.onBlurPasswordValidation}
@@ -412,9 +396,9 @@ export class CustomSignUp extends SignUp {
               <div id="message">
                 <span>Password must contain the following:</span>
 
-                {/* <p id="password-alphabet" class="default ">
+                <p id="password-alphabet">
                   At least 1 <b>character</b>
-                </p> */}
+                </p>
                 <p id="password-number" class="default ">
                   At least 1 <b>number</b>
                 </p>
@@ -433,7 +417,7 @@ export class CustomSignUp extends SignUp {
         <div className="crt-account">
           <button
             id="signUpButton"
-            className="createAccount disabled"
+            className={`createAccount ${btnCss}` }
             onClick={this.signUp}
             tabIndex="6"
           >
@@ -458,3 +442,5 @@ export class CustomSignUp extends SignUp {
     );
   }
 }
+
+export default SignUpComponent;

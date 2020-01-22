@@ -1,10 +1,10 @@
 import React from "react";
 import { Storage } from "aws-amplify";
 import { Auth } from "aws-amplify";
-import upload from "./assets/images/arrow-up.svg";
-import dropbox from "./assets/images/Drag-Files.svg";
-import signOut from "./assets/images/Signout-Icon.svg";
-import "./assets/styles/upload.css";
+import upload from "./assets/arrow-up.svg";
+import dropbox from "./assets/Drag-Files.svg";
+import signOut from "./assets/Signout-Icon.svg";
+import "./assets/upload.css";
 
 class Upload extends React.Component {
   constructor(props) {
@@ -416,7 +416,6 @@ class Upload extends React.Component {
     return (
       <div>
         <div id="snackbar">Some text some message..</div>
-
         <div id="confirmBoxPopupId" class="overlay">
           <div class="popup">
             <a class="close" href="#" onClick={() => this.confirmBoxClickNo()}>
@@ -447,9 +446,6 @@ class Upload extends React.Component {
           </div>
         </div>
         <div className="upload-container">
-          <div className="projectName projectName-upload m-bottom">
-            OCR <span className="subHead">Automation App</span>
-          </div>
           <div className="page-Title">Upload Document</div>
           <div className="field-container">
             <div className="filedDevide1">

@@ -2,7 +2,7 @@ import React from "react";
 import { SignIn } from "aws-amplify-react";
 import { Auth } from "aws-amplify";
 
-export class CustomSignIn extends SignIn {
+class SignInComponent extends SignIn {
   constructor(props) {
     super(props);
     this._validAuthStates = ["signIn", "signedOut", "signedUp"];
@@ -89,11 +89,7 @@ export class CustomSignIn extends SignIn {
     return (
       <div className="signin-container">
         <div id="snackbar">Some text some message..</div>
-        <div className="projectName m-bottom">
-          OCR <span className="subHead">Automation App</span>
-        </div>
         <div className="page-Title">Sign in to your account</div>
-
         <div className="field-container">
           <div className="filedDevide">
             <label className="label-fields">
@@ -105,6 +101,7 @@ export class CustomSignIn extends SignIn {
               className="input-fields"
               type="text"
               placeholder="john.doe"
+              value={this.state.username}
               onChange={this.onChange}
             ></input>
             <label className="label-fields">
@@ -116,6 +113,7 @@ export class CustomSignIn extends SignIn {
               className="input-fields"
               type="password"
               placeholder="******"
+              value={this.state.password}
               onChange={this.onChange}
             ></input>
           </div>
@@ -150,3 +148,5 @@ export class CustomSignIn extends SignIn {
     );
   }
 }
+
+export default SignInComponent;

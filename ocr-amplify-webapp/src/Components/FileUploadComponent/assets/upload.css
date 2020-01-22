@@ -131,13 +131,13 @@ input {
 }
 
 .deleteFile {
-  background-image: url("../images/trash-alt.svg");
+  background-image: url("./trash-alt.svg");
 }
 .loadingFile {
-  background-image: url("../images/loading-new.gif");
+  background-image: url("./loading-new.gif");
 }
 .uploadedFile {
-  background-image: url("../images/Path.svg");
+  background-image: url("./Path.svg");
 }
 
 .helloUser {

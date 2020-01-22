@@ -1,12 +1,8 @@
 import React from "react";
-import "./App.css";
-import Amplify from "aws-amplify";
-import config from "./aws-exports";
+import "../App.css";
 import Upload from "./Upload";
 
-Amplify.configure(config);
-
-class App extends React.Component {
+class FileUploadComponent extends React.Component {
   constructor(props, context) {
     super(props, context);
   }
@@ -24,4 +20,4 @@ class App extends React.Component {
   }
 }
 
-export default App;
+export default FileUploadComponent;

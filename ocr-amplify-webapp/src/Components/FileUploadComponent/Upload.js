@@ -1,10 +1,10 @@
 import React from "react";
-import { Storage } from "aws-amplify";
-import { Auth } from "aws-amplify";
+import { Auth, Storage } from "aws-amplify";
 import upload from "./assets/arrow-up.svg";
 import dropbox from "./assets/Drag-Files.svg";
 import signOut from "./assets/Signout-Icon.svg";
 import "./assets/upload.css";
+import { AWS } from "@aws-amplify/core/lib/Facet";
 
 class Upload extends React.Component {
   constructor(props) {
@@ -127,12 +127,12 @@ class Upload extends React.Component {
     var docx = {
       fileFormat:
         "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-      folderPath: "dev/source-documents-docx/"
+      folderPath: "dev/source-documents-docx/client-groups/cg1/"
     };
 
     var pdf = {
       fileFormat: "application/pdf",
-      folderPath: "dev/source-documents-pdf/"
+      folderPath: "dev/source-documents-pdf/client-groups/cg1/"
     };
     var uploadFileCount = 0;
     for (var i = 0; i < filesCount; i++) {
@@ -155,9 +155,10 @@ class Upload extends React.Component {
 
       //Upload to S3
       Storage.put(fileName, file, {
+        customPrefix: { public: '' },
         level: "public",
         contentType: fileType
-      })
+        })
         .then(result => {
           console.log("File upload result= ", result);
           uploadFileCount++;
@@ -185,7 +186,7 @@ class Upload extends React.Component {
             });
 
             var msg =
-              "<p class='submitNote'> <span>All files are <span>uploaded successfully</span>. </p>";
+              "<p className='submitNote'> <span>All files are <span>uploaded successfully</span>. </p>";
             document.getElementById("upload_file_status").innerHTML = msg;
           }
         })
@@ -360,7 +361,7 @@ class Upload extends React.Component {
       //Logic to show file status message when last file is deleted
       if (document.getElementsByClassName("deleteFile").length === 1) {
         var msg =
-          "<p class='submitNote'> <span>All files are <span>uploaded successfully</span>. </p>";
+          "<p className='submitNote'> <span>All files are <span>uploaded successfully</span>. </p>";
         document.getElementById("upload_file_status").innerHTML = msg;
       }
     } else {
@@ -416,12 +417,12 @@ class Upload extends React.Component {
     return (
       <div>
         <div id="snackbar">Some text some message..</div>
-        <div id="confirmBoxPopupId" class="overlay">
-          <div class="popup">
-            <a class="close" href="#" onClick={() => this.confirmBoxClickNo()}>
+        <div id="confirmBoxPopupId" className="overlay">
+          <div className="popup">
+            <a className="close" href="#" onClick={() => this.confirmBoxClickNo()}>
               &times;
             </a>
-            <div id="confirmBoxPopupId-content" class="content">
+            <div id="confirmBoxPopupId-content" className="content">
               Are you sure you want to delete this file?
             </div>
             <div id="buttons">
@@ -449,7 +450,6 @@ class Upload extends React.Component {
           <div className="page-Title">Upload Document</div>
           <div className="field-container">
             <div className="filedDevide1">
-              {/*<label className="label-fields">Upload File</label>*/}
               <input
                 type="file"
                 name="file"

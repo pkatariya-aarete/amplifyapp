@@ -1,6 +1,5 @@
 import React from "react";
 import { ForgotPassword } from "aws-amplify-react";
-import { Auth } from "aws-amplify";
 
 class NavBarComponent extends ForgotPassword {
   render(){

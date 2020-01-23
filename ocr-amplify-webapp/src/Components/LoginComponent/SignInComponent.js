@@ -3,16 +3,15 @@ import { SignIn } from "aws-amplify-react";
 import { Auth } from "aws-amplify";
 
 class SignInComponent extends SignIn {
-  constructor(props) {
-    super(props);
+  constructor(props, context) {
+    super(props, context);
     this._validAuthStates = ["signIn", "signedOut", "signedUp"];
+    this.state = {
+      username: "",
+      password: ""
+    }  
   }
-
-  state = {
-    username: "",
-    password: ""
-  };
-
+  
   onChange = e => {
     this.setState({
       [e.target.name]: e.target.value
@@ -93,7 +92,7 @@ class SignInComponent extends SignIn {
         <div className="field-container">
           <div className="filedDevide">
             <label className="label-fields">
-              Username<span className="asteric">*</span>
+              Email<span className="asteric">*</span>
             </label>
             <input
               id="username"

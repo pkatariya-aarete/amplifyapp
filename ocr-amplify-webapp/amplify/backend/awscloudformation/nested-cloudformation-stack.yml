@@ -68,40 +68,26 @@
 				}
 			}
 		},
-		"functionocramplifywebapp17fe710aPostConfirmation": {
+		"functionocramplifywebappcb7751c4PreSignup": {
 			"Type": "AWS::CloudFormation::Stack",
 			"Properties": {
-				"TemplateURL": "https://s3.amazonaws.com/ocr-amplify-webapp-devv-20200115233307-deployment/amplify-cfn-templates/function/ocramplifywebapp17fe710aPostConfirmation-cloudformation-template.json",
-				"Parameters": {
-					"modules": "add-to-group",
-					"resourceName": "ocramplifywebapp17fe710aPostConfirmation",
-					"GROUP": "client-group1",
-					"env": "devv"
-				}
-			}
-		},
-		"functionocramplifywebapp17fe710aPreSignup": {
-			"Type": "AWS::CloudFormation::Stack",
-			"Properties": {
-				"TemplateURL": "https://s3.amazonaws.com/ocr-amplify-webapp-devv-20200115233307-deployment/amplify-cfn-templates/function/ocramplifywebapp17fe710aPreSignup-cloudformation-template.json",
+				"TemplateURL": "https://s3.amazonaws.com/ocr-amplify-webapp-devv-20200115233307-deployment/amplify-cfn-templates/function/ocramplifywebappcb7751c4PreSignup-cloudformation-template.json",
 				"Parameters": {
 					"modules": "email-filter-whitelist",
-					"resourceName": "ocramplifywebapp17fe710aPreSignup",
 					"DOMAINWHITELIST": "aarete.com",
 					"env": "devv"
 				}
 			}
 		},
-		"authocramplifywebapp17fe710a": {
+		"authocramplifywebappcb7751c4": {
 			"Type": "AWS::CloudFormation::Stack",
 			"Properties": {
-				"TemplateURL": "https://s3.amazonaws.com/ocr-amplify-webapp-devv-20200115233307-deployment/amplify-cfn-templates/auth/ocramplifywebapp17fe710a-cloudformation-template.yml",
+				"TemplateURL": "https://s3.amazonaws.com/ocr-amplify-webapp-devv-20200115233307-deployment/amplify-cfn-templates/auth/ocramplifywebappcb7751c4-cloudformation-template.yml",
 				"Parameters": {
-					"identityPoolName": "ocramplifywebapp17fe710a_identitypool_17fe710a",
+					"identityPoolName": "ocramplifywebappcb7751c4_identitypool_cb7751c4",
 					"allowUnauthenticatedIdentities": false,
-					"openIdLambdaRoleName": "ocramp17fe710a_openid_lambda_role",
-					"resourceNameTruncated": "ocramp17fe710a",
-					"userPoolName": "ocramplifywebapp17fe710a_userpool_17fe710a",
+					"resourceNameTruncated": "ocrampcb7751c4",
+					"userPoolName": "ocramplifywebappcb7751c4_userpool_cb7751c4",
 					"autoVerifiedAttributes": "email",
 					"mfaConfiguration": "OFF",
 					"mfaTypes": "SMS Text Message",
@@ -113,22 +99,14 @@
 					"passwordPolicyMinLength": 8,
 					"passwordPolicyCharacters": "",
 					"requiredAttributes": "email,family_name,name",
-					"userpoolClientName": "ocramp17fe710a_app_client",
 					"userpoolClientGenerateSecret": true,
 					"userpoolClientRefreshTokenValidity": 30,
 					"userpoolClientWriteAttributes": "email",
 					"userpoolClientReadAttributes": "email",
-					"mfaLambdaRole": "ocramp17fe710a_totp_lambda_role",
-					"userpoolClientLambdaRole": "ocramp17fe710a_userpoolclient_lambda_role",
+					"userpoolClientLambdaRole": "ocrampcb7751c4_userpoolclient_lambda_role",
 					"userpoolClientSetAttributes": false,
-					"resourceName": "ocramplifywebapp17fe710a",
+					"resourceName": "ocramplifywebappcb7751c4",
 					"authSelections": "identityPoolAndUserPool",
-					"authRoleName": {
-						"Ref": "AuthRoleName"
-					},
-					"unauthRoleName": {
-						"Ref": "UnauthRoleName"
-					},
 					"authRoleArn": {
 						"Fn::GetAtt": [
 							"AuthRole",
@@ -141,37 +119,28 @@
 							"Arn"
 						]
 					},
-					"useDefault": "default",
-					"additionalQuestions": "requiredAttributes,triggers",
-					"triggers": "{\"PostConfirmation\":[\"add-to-group\"],\"PreSignup\":[\"email-filter-whitelist\"]}",
-					"PostConfirmation": "ocramplifywebapp17fe710aPostConfirmation",
-					"PreSignup": "ocramplifywebapp17fe710aPreSignup",
+					"useDefault": "manual",
+					"usernameAttributes": "email",
+					"triggers": "{\"PreSignup\":[\"email-filter-whitelist\"]}",
+					"userPoolGroupList": "",
 					"parentStack": {
 						"Ref": "AWS::StackId"
 					},
-					"permissions": "{\"policyName\":\"AddToGroupCognito\",\"trigger\":\"PostConfirmation\",\"effect\":\"Allow\",\"actions\":[\"cognito-idp:AdminAddUserToGroup\",\"cognito-idp:GetGroup\",\"cognito-idp:CreateGroup\"],\"resource\":{\"paramType\":\"!GetAtt\",\"keys\":[\"UserPool\",\"Arn\"]}}",
-					"dependsOn": "[object Object],[object Object]",
-					"functionocramplifywebapp17fe710aPostConfirmationArn": {
+					"permissions": "",
+					"dependsOn": "[object Object]",
+					"thirdPartyAuth": false,
+					"userPoolGroups": false,
+					"adminQueries": false,
+					"hostedUI": false,
+					"functionocramplifywebappcb7751c4PreSignupArn": {
 						"Fn::GetAtt": [
-							"functionocramplifywebapp17fe710aPostConfirmation",
+							"functionocramplifywebappcb7751c4PreSignup",
 							"Outputs.Arn"
 						]
 					},
-					"functionocramplifywebapp17fe710aPostConfirmationName": {
+					"functionocramplifywebappcb7751c4PreSignupName": {
 						"Fn::GetAtt": [
-							"functionocramplifywebapp17fe710aPostConfirmation",
-							"Outputs.Name"
-						]
-					},
-					"functionocramplifywebapp17fe710aPreSignupArn": {
-						"Fn::GetAtt": [
-							"functionocramplifywebapp17fe710aPreSignup",
-							"Outputs.Arn"
-						]
-					},
-					"functionocramplifywebapp17fe710aPreSignupName": {
-						"Fn::GetAtt": [
-							"functionocramplifywebapp17fe710aPreSignup",
+							"functionocramplifywebappcb7751c4PreSignup",
 							"Outputs.Name"
 						]
 					},
@@ -179,14 +148,14 @@
 				}
 			}
 		},
-		"storages3uploadfunction": {
+		"storages3UploadStorage": {
 			"Type": "AWS::CloudFormation::Stack",
 			"Properties": {
 				"TemplateURL": "https://s3.amazonaws.com/ocr-amplify-webapp-devv-20200115233307-deployment/amplify-cfn-templates/storage/s3-cloudformation-template.json",
 				"Parameters": {
 					"bucketName": "aarete-ocr",
-					"authPolicyName": "s3_amplify_a8171a6e",
-					"unauthPolicyName": "s3_amplify_a8171a6e",
+					"authPolicyName": "s3_amplify_d85b7321",
+					"unauthPolicyName": "s3_amplify_d85b7321",
 					"authRoleName": {
 						"Ref": "AuthRoleName"
 					},
@@ -196,15 +165,15 @@
 					"selectedGuestPermissions": "s3:GetObject,s3:ListBucket",
 					"selectedAuthenticatedPermissions": "s3:PutObject,s3:GetObject,s3:ListBucket",
 					"s3PermissionsAuthenticatedPublic": "s3:PutObject,s3:GetObject",
-					"s3PublicPolicy": "Public_policy_d28cc8fb",
+					"s3PublicPolicy": "Public_policy_5250e2c2",
 					"s3PermissionsAuthenticatedUploads": "s3:PutObject",
-					"s3UploadsPolicy": "Uploads_policy_d28cc8fb",
+					"s3UploadsPolicy": "Uploads_policy_5250e2c2",
 					"s3PermissionsAuthenticatedProtected": "s3:PutObject,s3:GetObject",
-					"s3ProtectedPolicy": "Protected_policy_d28cc8fb",
+					"s3ProtectedPolicy": "Protected_policy_5250e2c2",
 					"s3PermissionsAuthenticatedPrivate": "s3:PutObject,s3:GetObject",
-					"s3PrivatePolicy": "Private_policy_d28cc8fb",
+					"s3PrivatePolicy": "Private_policy_5250e2c2",
 					"AuthenticatedAllowList": "ALLOW",
-					"s3ReadPolicy": "read_policy_d28cc8fb",
+					"s3ReadPolicy": "read_policy_5250e2c2",
 					"s3PermissionsGuestPublic": "DISALLOW",
 					"s3PermissionsGuestUploads": "DISALLOW",
 					"GuestAllowList": "DISALLOW",
@@ -227,7 +196,7 @@
 			"DependsOn": [
 				"AuthRole",
 				"UnauthRole",
-				"authocramplifywebapp17fe710a"
+				"authocramplifywebappcb7751c4"
 			],
 			"Type": "AWS::Lambda::Function",
 			"Properties": {
@@ -310,7 +279,7 @@
 				},
 				"idpId": {
 					"Fn::GetAtt": [
-						"authocramplifywebapp17fe710a",
+						"authocramplifywebappcb7751c4",
 						"Outputs.IdentityPoolId"
 					]
 				},

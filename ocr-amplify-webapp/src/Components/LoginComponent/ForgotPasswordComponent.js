@@ -362,7 +362,7 @@ class ForgotPasswordComponent extends ForgotPassword {
           <div className="filedDevide">
             <div id="forgot-password-confirmation-code-section">
               <label className="label-fields">
-                Username<span className="asteric">*</span>
+                Email<span className="asteric">*</span>
               </label>
               <input
                 id="username"
@@ -400,13 +400,9 @@ class ForgotPasswordComponent extends ForgotPassword {
                 onBlur={this.onBlurPasswordValidation}
                 onFocus={this.onFocusPasswordValidation}
               ></input>
-              <p id="passwordTooltip" class="reset-password-passwordTooltip">
+              <div id="passwordTooltip" class="reset-password-passwordTooltip">
                 <div id="message">
                   <span>Password must contain the following:</span>
-
-                  {/* <p id="password-alphabet" class="default ">
-                    Atleast 1 <b>character</b>
-                  </p> */}
                   <p id="password-number" class="default">
                     At least 1 <b>number</b>
                   </p>
@@ -417,7 +413,7 @@ class ForgotPasswordComponent extends ForgotPassword {
                     Minimum length of <b>8 characters</b>
                   </p>
                 </div>
-              </p>
+              </div>
             </div>
           </div>
         </div>

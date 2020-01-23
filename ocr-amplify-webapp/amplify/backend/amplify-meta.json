@@ -1,130 +1,103 @@
 {
-	"providers": {
-		"awscloudformation": {
-			"AuthRoleName": "ocr-amplify-webapp-devv-20200115233307-authRole",
-			"UnauthRoleArn": "arn:aws:iam::094717603583:role/ocr-amplify-webapp-devv-20200115233307-unauthRole",
-			"AuthRoleArn": "arn:aws:iam::094717603583:role/ocr-amplify-webapp-devv-20200115233307-authRole",
-			"Region": "us-east-1",
-			"DeploymentBucketName": "ocr-amplify-webapp-devv-20200115233307-deployment",
-			"UnauthRoleName": "ocr-amplify-webapp-devv-20200115233307-unauthRole",
-			"StackName": "ocr-amplify-webapp-devv-20200115233307",
-			"StackId": "arn:aws:cloudformation:us-east-1:094717603583:stack/ocr-amplify-webapp-devv-20200115233307/4b4ac2b0-3819-11ea-97d3-0ed829f607b4",
-			"AmplifyAppId": "d1zorovqwrd3ia"
-		}
-	},
-	"function": {
-		"ocramplifywebapp17fe710aPostConfirmation": {
-			"service": "Lambda",
-			"providerPlugin": "awscloudformation",
-			"build": true,
-			"lastBuildTimeStamp": "2020-01-16T04:42:16.475Z",
-			"lastPackageTimeStamp": "2020-01-16T04:42:17.913Z",
-			"distZipFilename": "ocramplifywebapp17fe710aPostConfirmation-616b6446565446545230-build.zip",
-			"providerMetadata": {
-				"s3TemplateURL": "https://s3.amazonaws.com/ocr-amplify-webapp-devv-20200115233307-deployment/amplify-cfn-templates/function/ocramplifywebapp17fe710aPostConfirmation-cloudformation-template.json",
-				"logicalId": "functionocramplifywebapp17fe710aPostConfirmation"
-			},
-			"lastPushTimeStamp": "2020-01-16T05:26:08.730Z",
-			"output": {
-				"Region": "us-east-1",
-				"Arn": "arn:aws:lambda:us-east-1:094717603583:function:ocramplifywebapp17fe710aPostConfirmation-devv",
-				"Name": "ocramplifywebapp17fe710aPostConfirmation-devv"
-			},
-			"lastPushDirHash": "2IEZAR9gTQBs9pqO2QpQVFwysWM="
-		},
-		"ocramplifywebapp17fe710aPreSignup": {
-			"service": "Lambda",
-			"providerPlugin": "awscloudformation",
-			"build": true,
-			"lastBuildTimeStamp": "2020-01-16T04:42:17.664Z",
-			"lastPackageTimeStamp": "2020-01-16T05:09:46.226Z",
-			"distZipFilename": "ocramplifywebapp17fe710aPreSignup-326450584e7766693644-build.zip",
-			"providerMetadata": {
-				"s3TemplateURL": "https://s3.amazonaws.com/ocr-amplify-webapp-devv-20200115233307-deployment/amplify-cfn-templates/function/ocramplifywebapp17fe710aPreSignup-cloudformation-template.json",
-				"logicalId": "functionocramplifywebapp17fe710aPreSignup"
-			},
-			"lastPushTimeStamp": "2020-01-16T05:26:08.733Z",
-			"output": {
-				"Region": "us-east-1",
-				"Arn": "arn:aws:lambda:us-east-1:094717603583:function:ocramplifywebapp17fe710aPreSignup-devv",
-				"Name": "ocramplifywebapp17fe710aPreSignup-devv"
-			},
-			"lastPushDirHash": "aq2z5zoHMepbygLbG6XkxFpoFdQ="
-		}
-	},
-	"auth": {
-		"ocramplifywebapp17fe710a": {
-			"service": "Cognito",
-			"providerPlugin": "awscloudformation",
-			"dependsOn": [
-				{
-					"category": "function",
-					"resourceName": "ocramplifywebapp17fe710aPostConfirmation",
-					"triggerProvider": "Cognito",
-					"attributes": [
-						"Arn",
-						"Name"
-					]
-				},
-				{
-					"category": "function",
-					"resourceName": "ocramplifywebapp17fe710aPreSignup",
-					"triggerProvider": "Cognito",
-					"attributes": [
-						"Arn",
-						"Name"
-					]
-				}
-			],
-			"providerMetadata": {
-				"s3TemplateURL": "https://s3.amazonaws.com/ocr-amplify-webapp-devv-20200115233307-deployment/amplify-cfn-templates/auth/ocramplifywebapp17fe710a-cloudformation-template.yml",
-				"logicalId": "authocramplifywebapp17fe710a"
-			},
-			"lastPushTimeStamp": "2020-01-16T05:26:08.736Z",
-			"output": {
-				"AppClientSecret": "1f0tlp5qrtbupth4pjt1pbn8hucja4c1i2bviim771kn3b9hm90c",
-				"UserPoolId": "us-east-1_QcRJXrTJ3",
-				"AppClientIDWeb": "72k2g2iai1q4oi89ucl7fsl83q",
-				"AppClientID": "3cbj10rm8vi083ukr40d9vvima",
-				"IdentityPoolId": "us-east-1:d11b2c6a-cdfe-4dab-bcfe-0bd29fdb5cbc",
-				"IdentityPoolName": "ocramplifywebapp17fe710a_identitypool_17fe710a__devv",
-				"UserPoolName": "ocramplifywebapp17fe710a_userpool_17fe710a"
-			},
-			"lastPushDirHash": "S3YfSj+ZFVPYtzzOi2mbULJSKfY="
-		}
-	},
-	"storage": {
-		"s3uploadfunction": {
-			"service": "S3",
-			"providerPlugin": "awscloudformation",
-			"providerMetadata": {
-				"s3TemplateURL": "https://s3.amazonaws.com/ocr-amplify-webapp-devv-20200115233307-deployment/amplify-cfn-templates/storage/s3-cloudformation-template.json",
-				"logicalId": "storages3uploadfunction"
-			},
-			"lastPushTimeStamp": "2020-01-16T05:26:08.740Z",
-			"output": {
-				"BucketName": "aarete-ocrdevv-devv",
-				"Region": "us-east-1"
-			},
-			"lastPushDirHash": "yJ0kT+Z+KFWgS/DMngX0Jy+q4iQ="
-		}
-	},
-	"hosting": {
-		"S3AndCloudFront": {
-			"service": "S3AndCloudFront",
-			"providerPlugin": "awscloudformation",
-			"providerMetadata": {
-				"s3TemplateURL": "https://s3.amazonaws.com/ocr-amplify-webapp-devv-20200115233307-deployment/amplify-cfn-templates/hosting/template.json",
-				"logicalId": "hostingS3AndCloudFront"
-			},
-			"lastPushTimeStamp": "2020-01-16T05:26:08.752Z",
-			"output": {
-				"S3BucketSecureURL": "https://ocr-amplify-webapp-20200116002434-hostingbucket-devv.s3.amazonaws.com",
-				"WebsiteURL": "http://ocr-amplify-webapp-20200116002434-hostingbucket-devv.s3-website-us-east-1.amazonaws.com",
-				"Region": "us-east-1",
-				"HostingBucketName": "ocr-amplify-webapp-20200116002434-hostingbucket-devv"
-			},
-			"lastPushDirHash": "MVS56MyF407ClNAY+O9ceU3ub28="
-		}
-	}
+    "providers": {
+        "awscloudformation": {
+            "AuthRoleName": "ocr-amplify-webapp-devv-20200115233307-authRole",
+            "UnauthRoleArn": "arn:aws:iam::094717603583:role/ocr-amplify-webapp-devv-20200115233307-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::094717603583:role/ocr-amplify-webapp-devv-20200115233307-authRole",
+            "Region": "us-east-1",
+            "DeploymentBucketName": "ocr-amplify-webapp-devv-20200115233307-deployment",
+            "UnauthRoleName": "ocr-amplify-webapp-devv-20200115233307-unauthRole",
+            "StackName": "ocr-amplify-webapp-devv-20200115233307",
+            "StackId": "arn:aws:cloudformation:us-east-1:094717603583:stack/ocr-amplify-webapp-devv-20200115233307/4b4ac2b0-3819-11ea-97d3-0ed829f607b4",
+            "AmplifyAppId": "d1zorovqwrd3ia"
+        }
+    },
+    "function": {
+        "ocramplifywebappcb7751c4PreSignup": {
+            "service": "Lambda",
+            "providerPlugin": "awscloudformation",
+            "build": true,
+            "lastBuildTimeStamp": "2020-01-22T19:25:25.205Z",
+            "lastPackageTimeStamp": "2020-01-22T19:25:25.268Z",
+            "distZipFilename": "ocramplifywebappcb7751c4PreSignup-6c6c764974762f4e706f-build.zip",
+            "providerMetadata": {
+                "s3TemplateURL": "https://s3.amazonaws.com/ocr-amplify-webapp-devv-20200115233307-deployment/amplify-cfn-templates/function/ocramplifywebappcb7751c4PreSignup-cloudformation-template.json",
+                "logicalId": "functionocramplifywebappcb7751c4PreSignup"
+            },
+            "lastPushTimeStamp": "2020-01-23T19:26:14.815Z",
+            "output": {
+                "Region": "us-east-1",
+                "Arn": "arn:aws:lambda:us-east-1:094717603583:function:ocramplifywebappcb7751c4PreSignup-devv",
+                "Name": "ocramplifywebappcb7751c4PreSignup-devv",
+                "LambdaExecutionRole": "ocramplifywebappcb7751c4PreSignup-devv"
+            },
+            "lastPushDirHash": "6b0c+HneFfNfNJG/8T6vIzC4Oc8="
+        }
+    },
+    "auth": {
+        "ocramplifywebappcb7751c4": {
+            "service": "Cognito",
+            "providerPlugin": "awscloudformation",
+            "dependsOn": [
+                {
+                    "category": "function",
+                    "resourceName": "ocramplifywebappcb7751c4PreSignup",
+                    "triggerProvider": "Cognito",
+                    "attributes": [
+                        "Arn",
+                        "Name"
+                    ]
+                }
+            ],
+            "providerMetadata": {
+                "s3TemplateURL": "https://s3.amazonaws.com/ocr-amplify-webapp-devv-20200115233307-deployment/amplify-cfn-templates/auth/ocramplifywebappcb7751c4-cloudformation-template.yml",
+                "logicalId": "authocramplifywebappcb7751c4"
+            },
+            "lastPushTimeStamp": "2020-01-23T19:26:14.817Z",
+            "output": {
+                "AppClientSecret": "omj1eebn0rl6uviut7mmu29fbdlp1cjsnnrp15ge6tet86sp6ha",
+                "UserPoolId": "us-east-1_HsauGgUCH",
+                "AppClientIDWeb": "3rj5ae9hc9r1iujh4pn2tpsf9s",
+                "AppClientID": "4u022v001c2ancu57obpe3drs1",
+                "IdentityPoolId": "us-east-1:1e25c3a1-11b7-41e4-861e-cbbe90166a6d",
+                "IdentityPoolName": "ocramplifywebappcb7751c4_identitypool_cb7751c4__devv",
+                "UserPoolName": "ocramplifywebappcb7751c4_userpool_cb7751c4"
+            },
+            "lastPushDirHash": "TWtRRjIygKnbWrJ/e13oh9QW20Y="
+        }
+    },
+    "storage": {
+        "s3UploadStorage": {
+            "service": "S3",
+            "providerPlugin": "awscloudformation",
+            "providerMetadata": {
+                "s3TemplateURL": "https://s3.amazonaws.com/ocr-amplify-webapp-devv-20200115233307-deployment/amplify-cfn-templates/storage/s3-cloudformation-template.json",
+                "logicalId": "storages3UploadStorage"
+            },
+            "lastPushTimeStamp": "2020-01-23T19:26:14.820Z",
+            "output": {
+                "BucketName": "aarete-ocr",
+                "Region": "us-east-1"
+            },
+            "lastPushDirHash": "3IklnA2mdJa7DBWdxNqnd1x889I="
+        }
+    },
+    "hosting": {
+        "S3AndCloudFront": {
+            "service": "S3AndCloudFront",
+            "providerPlugin": "awscloudformation",
+            "providerMetadata": {
+                "s3TemplateURL": "https://s3.amazonaws.com/ocr-amplify-webapp-devv-20200115233307-deployment/amplify-cfn-templates/hosting/template.json",
+                "logicalId": "hostingS3AndCloudFront"
+            },
+            "lastPushTimeStamp": "2020-01-23T19:26:18.610Z",
+            "output": {
+                "S3BucketSecureURL": "https://ocr-amplify-webapp-20200116002434-hostingbucket-devv.s3.amazonaws.com",
+                "WebsiteURL": "http://ocr-amplify-webapp-20200116002434-hostingbucket-devv.s3-website-us-east-1.amazonaws.com",
+                "Region": "us-east-1",
+                "HostingBucketName": "ocr-amplify-webapp-20200116002434-hostingbucket-devv"
+            },
+            "lastPushDirHash": "MVS56MyF407ClNAY+O9ceU3ub28="
+        }
+    }
 }

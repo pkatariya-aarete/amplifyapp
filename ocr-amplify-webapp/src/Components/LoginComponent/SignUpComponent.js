@@ -4,16 +4,18 @@ import { Auth } from "aws-amplify";
 
 //Register
 class SignUpComponent extends SignUp {
-  constructor(props) {
-    super(props);
-  }
   state = {
     name: '',
     family_name: '',
     username: '',
     password: '',
     email: '',
-    submitBtnStatus: false
+    submitBtnStatus: false,
+    pwdCss: '',
+    pwdNumberCss: '',
+    pwdSpecialCharCss: '',
+    pwdLengthCss: '',
+    showToolTip: false
   };
 
   onChange = e => {
@@ -26,122 +28,63 @@ class SignUpComponent extends SignUp {
       this.state.username && this.state.password &&
       this.state.email) === '') {
         this.setState({submitBtnStatus: true})
-      }
-    else {
+      } else {
       this.setState({submitBtnStatus: false})
     }
   };
 
-  onBlurPasswordValidation = e => {
-    let passInput = document.getElementById("password");
-    if (passInput.classList.contains("success-password")) {
-      passInput.classList.remove("success-password");
-    }
+  validateEmail(email) {
+    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(email).toLowerCase());
+  }
 
-    document.getElementById("passwordTooltip").style.display = "none";
-  };
-  onFocusPasswordValidation = e => {
-    document.getElementById("passwordTooltip").style.display = "block";
-  };
+  validateEmailDomain(email) {
+    email = email.toLowerCase();
+    let emailFormat = /@aarete.com$/;
+    return emailFormat.test(email);
+  }
+
+  isSpecialCharacter(str) {
+    let specialCharaterFormat = /[ !@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/;
+    return specialCharaterFormat.test(str);
+  }
+
+  isNumber(str) {
+    let numbers = /[0-9]/g;
+    return numbers.test(str);
+  }
 
   onKeyUpPasswordValidation = e => {
-    console.log(e)
     let pwd = e.target.value.trim();
-    let flag = {
-      alphabet: false,
-      number: false,
-      specialCharacter: false,
-      length: false
-    };
-
-    //let pwdMsgElement = document.getElementById("password-error-message");
-
-    let passwordAlphabetElement = document.getElementById("password-alphabet");
-    let passwordNumberElement = document.getElementById("password-number");
-    let passwordSpecialChar = document.getElementById(
-      "password-specialCharacter"
-    );
-    let passwordLengthElement = document.getElementById("password-length");
-    let passwordInputElement = document.getElementById("password");
-    
     const validColor = 'valid';
     const invalidColor = 'invalid';
-    //const defaulColor = 'valid';
+    const defaulColor = 'default';
 
     if (pwd.length === 0) {
-      //pwdCss = validColor
-      passwordAlphabetElement.classList.remove("invalid");
-      passwordNumberElement.classList.remove("invalid");
-      passwordSpecialChar.classList.remove("invalid");
-      passwordLengthElement.classList.remove("invalid");
-
-      passwordAlphabetElement.classList.remove("valid");
-      passwordNumberElement.classList.remove("valid");
-      passwordSpecialChar.classList.remove("valid");
-      passwordLengthElement.classList.remove("valid");
-
-      document.getElementById("password").classList.remove("error-password");
-      document.getElementById("password").classList.remove("success-password");
+      this.setState({
+        pwdLengthCss: defaulColor,
+        pwdNumberCss: defaulColor,
+        pwdSpecialCharCss: defaulColor,
+        pwdCss: ''
+      })
     } else {
-      if (pwd.length >= 8) {
-        passwordInputElement.focus();
-        passwordLengthElement.classList.remove("invalid");
-        passwordLengthElement.classList.add("valid");
-        flag.length = true;
-      } else {
-        passwordInputElement.focus();
-        passwordLengthElement.classList.remove("valid");
-        passwordLengthElement.classList.add("invalid");
-      }
+      let pwdLengthCss = (pwd.length >= 8) ? validColor : invalidColor
+      this.setState({pwdLengthCss:pwdLengthCss})
+      
+      let pwdNumberCss = this.isNumber(pwd) ? validColor : invalidColor
+      this.setState({pwdNumberCss:pwdNumberCss})
 
-      let lowerCaseLetters = /[a-z]/g;
-      let upperCaseLetters = /[A-Z]/g;
-      if (pwd.match(lowerCaseLetters) || pwd.match(upperCaseLetters)) {
-        passwordAlphabetElement.classList.remove("invalid");
-        passwordAlphabetElement.classList.add("valid");
-        flag.alphabet = true;
-      } else {
-        passwordAlphabetElement.classList.remove("valid");
-        passwordAlphabetElement.classList.add("invalid");
-      }
-
-      let numbers = /[0-9]/g;
-      if (pwd.match(numbers)) {
-        passwordNumberElement.classList.remove("invalid");
-        passwordNumberElement.classList.add("valid");
-        flag.number = true;
-      } else {
-        passwordNumberElement.classList.remove("valid");
-        passwordNumberElement.classList.add("invalid");
-      }
-
-      let specialCharaterFormat = /[ !@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/;
-      if (pwd.match(specialCharaterFormat)) {
-        passwordSpecialChar.classList.remove("invalid");
-        passwordSpecialChar.classList.add("valid");
-        flag.specialCharacter = true;
-      } else {
-        passwordSpecialChar.classList.add("invalid");
-        passwordSpecialChar.classList.remove("valid");
-      }
+      let pwdSpecialCharCss = this.isSpecialCharacter(pwd) ? validColor : invalidColor
+      this.setState({pwdSpecialCharCss:pwdSpecialCharCss})
 
       //Password Criteria
-      if (
-        flag.alphabet &&
-        flag.number &&
-        flag.length &&
-        flag.specialCharacter
-      ) {
-        document.getElementById("password").classList.remove("error-password");
-        document.getElementById("password").classList.add("success-password");
-      } else {
-        document
-          .getElementById("password")
-          .classList.remove("success-password");
-        document.getElementById("password").classList.add("error-password");
-      }
+      let pwdCss = (
+        (pwdSpecialCharCss === validColor)
+        && (pwdLengthCss === validColor)
+        && (pwdNumberCss === validColor)
+        ) ? "success-password" : "error-password"
+      this.setState({pwdCss:pwdCss})
     }
-    //return pwdCss
   };
 
   signUp(event) {
@@ -183,7 +126,7 @@ class SignUpComponent extends SignUp {
     var flag = false;
 
     //First Name
-    if (document.getElementById("name").value.trim() === "") {
+    if (this.state.name.trim() === "") {
       document.getElementById("name").focus();
       msg = "Please enter First Name.";
       flag = true;
@@ -243,7 +186,7 @@ class SignUpComponent extends SignUp {
       flag = true;
     }
     //Email format
-    else if (document.getElementById("email").value.trim() != "") {
+    else if (document.getElementById("email").value.trim() !== "") {
       var email = document.getElementById("email").value.trim();
       if (!this.validateEmail(email)) {
         msg = "Please enter a valid E-mail format.";
@@ -261,39 +204,7 @@ class SignUpComponent extends SignUp {
     return flag;
   }
 
-  validateEmail(email) {
-    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return re.test(String(email).toLowerCase());
-  }
 
-  validateEmailDomain(email) {
-    email = email.toLowerCase();
-    let emailFormat = /@aarete.com$/;
-    return emailFormat.test(email);
-  }
-
-  isSpecialCharacter(str) {
-    let specialCharaterFormat = /[ !@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/;
-    return specialCharaterFormat.test(str);
-  }
-
-  isAlphabet(str) {
-    let lowerCaseLetters = /[a-z]/g;
-    let upperCaseLetters = /[A-Z]/g;
-    let numbers = /[0-9]/g;
-    let specialCharaterFormat = /[ !@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/;
-
-    if (lowerCaseLetters.test(str) || upperCaseLetters.test(str)) {
-      return true;
-    }
-
-    return false;
-  }
-
-  isNumber(str) {
-    let numbers = /[0-9]/g;
-    return numbers.test(str);
-  }
 
   showAlert(msg) {
     var x = document.getElementById("snackbar");
@@ -382,35 +293,30 @@ class SignUpComponent extends SignUp {
             <input
               id="password"
               name="password"
-              className="input-fields"
+              className={`input-fields ${this.state.pwdCss}`}
               type="password"
               placeholder="******"
               value={this.state.password}
               onChange={this.onChange}
               onKeyUp={this.onKeyUpPasswordValidation}
-              onBlur={this.onBlurPasswordValidation}
-              onFocus={this.onFocusPasswordValidation}
+              onBlur={() => this.setState({showToolTip:false})}
+              onFocus={() => this.setState({showToolTip:true})}
               tabIndex="4"
             ></input>
-            <p id="passwordTooltip">
+            <div id="passwordTooltip" style={this.state.showToolTip ? {display: 'block'} : {display: 'none'} }>
               <div id="message">
                 <span>Password must contain the following:</span>
-
-                <p id="password-alphabet">
-                  At least 1 <b>character</b>
-                </p>
-                <p id="password-number" class="default ">
+                <p id="password-number" className={`${this.state.pwdNumberCss}`}>
                   At least 1 <b>number</b>
                 </p>
-                <p id="password-specialCharacter" class="default ">
+                <p id="password-specialCharacter" className={`${this.state.pwdSpecialCharCss}`}>
                   At least 1 <b>special character</b>
                 </p>
-                <p id="password-length" class="default ">
+                <p id="password-length" className={`${this.state.pwdLengthCss}`}>
                   Minimum length of <b>8 characters</b>
                 </p>
               </div>
-            </p>
-            {/* <p id="password-error-message"></p> */}
+            </div>
           </div>
         </div>
 

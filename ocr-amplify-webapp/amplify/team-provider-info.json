@@ -18,10 +18,14 @@
                 },
                 "ocramplifywebapp17fe710aPreSignup": {
                     "DOMAINWHITELIST": "aarete.com"
+                },
+                "ocramplifywebappcb7751c4PreSignup": {
+                    "DOMAINWHITELIST": "aarete.com"
                 }
             },
             "auth": {
-                "ocramplifywebapp17fe710a": {}
+                "ocramplifywebapp17fe710a": {},
+                "ocramplifywebappcb7751c4": {}
             }
         }
     }

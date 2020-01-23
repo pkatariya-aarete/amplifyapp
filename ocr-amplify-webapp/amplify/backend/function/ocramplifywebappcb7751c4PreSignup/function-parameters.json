@@ -1,0 +1,16 @@
+{
+    "trigger": true,
+    "modules": [
+        "email-filter-whitelist"
+    ],
+    "parentResource": "ocramplifywebappcb7751c4",
+    "functionName": "ocramplifywebappcb7751c4PreSignup",
+    "parentStack": "auth",
+    "triggerEnvs": "[]",
+    "triggerDir": "/usr/local/lib/node_modules/@aws-amplify/cli/node_modules/amplify-category-auth/provider-utils/awscloudformation/utils/../triggers/PreSignup",
+    "roleName": "ocramplifywebappcb7751c4PreSignup",
+    "triggerTemplate": "PreSignup.json.ejs",
+    "triggerEventPath": "PreSignup.event.json",
+    "skipEdit": true,
+    "resourceName": "ocramplifywebappcb7751c4PreSignup"
+}

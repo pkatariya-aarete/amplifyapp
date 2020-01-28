@@ -453,7 +453,7 @@ class FileUploadComponent extends React.Component {
 
           <div className="file-upload" droppable="true">
             <div
-              className="dropBox-component H200"
+              className="dropBox-component H250"
               onDragEnter={this.onDragEnter}
               onDragOver={this.onDragOver}
               onDrop={this.onFileDrop}

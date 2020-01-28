@@ -1,17 +1,41 @@
 import React from "react";
 import { ForgotPassword } from "aws-amplify-react";
 import { Auth } from "aws-amplify";
-import signOut from "../../assets/images/Signout-Icon.svg";
-import { Menu, Segment, Image, Button } from 'semantic-ui-react';
+import { Menu, Image, Button } from 'semantic-ui-react';
+import { Link } from 'react-router-dom';
 
 import logo from './assets/doczy-logo.png';
 
+export function NavBarIcon(){
+  return(
+    <Menu borderless inverted //fixed='top'
+      style={{backgroundColor: 'rgba(52, 52, 52, 0)'}}
+    >
+      <Menu.Item position='left'>
+        <Image size='medium' src={logo} />
+      </Menu.Item>
+    </Menu>
+    )
+  }
+
 class NavBarComponent extends ForgotPassword {
+  state= {
+    name: '',
+    activeItem: ''
+  }
+
+  static getDerivedStateFromProps(props, state) {
+    if (props.authData){
+      const { attributes } = props.authData
+      return {name: attributes.name}
+    }
+    return null
+  }
+
   signOut() {
     Auth.signOut()
       .then(data => {
         this._validAuthStates = ["signIn"];
-        window.location.reload();
       })
       .catch(err => console.log(err));
   }
@@ -19,42 +43,38 @@ class NavBarComponent extends ForgotPassword {
   render(){
     if (this.props.authState === "signedIn") {
       return (
-        <Segment inverted compact
+        <Menu borderless inverted //fixed='top'
           style={{backgroundColor: 'rgba(52, 52, 52, 0)'}}
         >
-          <Menu borderless inverted fixed='top'
-            style={{backgroundColor: 'rgba(52, 52, 52, 0)'}}
-          >
-            <Menu.Item position='left'>
-              <Image size='medium' src={logo} />
-            </Menu.Item>
-            <Menu.Item position='right'
-              name={`Hello\! ${this.props.authData.attributes.preferred_username} `} 
+          <Menu.Item position='left'>
+            <Image size='medium' src={logo} />
+          </Menu.Item>
+          <Menu.Item as={ Link } to='/'
+            position='right'
+            name='upload'
+            //active={activeItem === 'upload'}
+          />
+          <Menu.Item as={ Link } to='/results'
+            name='results'
+            //active={activeItem === 'results'}
+          />
+          <Menu.Item
+            // eslint-disable-next-line
+            name={`Hello!! ${this.state.name}`}
+          />
+          <Menu.Item>
+            <Button
+              content='Signout'
+              icon='power off'
+              color='orange'
+              onClick={() => this.signOut()}
+              
             />
-            <Menu.Item>
-              <Button
-                content='Signout'
-                onClick={() => this.signOut()}
-                color='orange'
-              />
-            </Menu.Item>
-          </Menu>
-        </Segment>
+          </Menu.Item>
+        </Menu>
       )
     } else {
-      return(
-        <Segment inverted compact
-          style={{backgroundColor: 'rgba(52, 52, 52, 0)'}}
-        >
-          <Menu borderless inverted fixed='top'
-            style={{backgroundColor: 'rgba(52, 52, 52, 0)'}}
-          >
-            <Menu.Item position='left'>
-              <Image size='medium' src={logo} />
-            </Menu.Item>
-          </Menu>
-        </Segment>
-      )
+      NavBarIcon()
     }
   }
 }

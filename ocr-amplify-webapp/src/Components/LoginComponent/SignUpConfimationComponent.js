@@ -1,16 +1,17 @@
 import React from "react";
 import { ConfirmSignUp } from "aws-amplify-react";
 import { Auth } from "aws-amplify";
+import { NavBarIcon } from "../NavBarComponent/NavBarComponent";
 
 class SignUpConfimationComponent extends ConfirmSignUp {
   constructor(props) {
     super(props);
+    this.state = {
+      email: '',
+      code: ''
+    }
   }
 
-  state = {
-    email: '',
-    code: ''
-  };
 
   onChange = e => {
     this.setState({
@@ -100,16 +101,15 @@ class SignUpConfimationComponent extends ConfirmSignUp {
 
   showComponent(theme) {
     return (
+      <div>
+      <NavBarIcon />
       <div className="signin-container">
         <div id="snackbar">Some text some message..</div>
-        <div className="projectName m-bottom">
-          OCR <span className="subHead">Automation App</span>
-        </div>
         <div className="page-Title">Confirm Sign Up</div>
         <div className="field-container">
           <div className="filedDevide">
             <label className="label-fields">
-              email<span className="asteric">*</span>
+              E-mail<span className="asteric">*</span>
             </label>
             <input
               id="email"
@@ -164,6 +164,7 @@ class SignUpConfimationComponent extends ConfirmSignUp {
             Sign In{" "}
           </span>
         </div>
+      </div>
       </div>
     );
   }

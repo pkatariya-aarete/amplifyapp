@@ -1,6 +1,7 @@
 import React from "react";
 import { ForgotPassword } from "aws-amplify-react";
 import { Auth } from "aws-amplify";
+import { NavBarIcon } from "../NavBarComponent/NavBarComponent";
 
 class ForgotPasswordComponent extends ForgotPassword {
   state = {
@@ -106,8 +107,7 @@ class ForgotPasswordComponent extends ForgotPassword {
         passwordNumberElement.classList.add("invalid");
       }
 
-      let specialCharaterFormat = /[ !@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/;
-      if (pwd.match(specialCharaterFormat)) {
+      if (this.isSpecialCharacter(pwd)) {
         passwordSpecialChar.classList.remove("invalid");
         passwordSpecialChar.classList.add("valid");
         flag.specialCharacter = true;
@@ -161,7 +161,7 @@ class ForgotPasswordComponent extends ForgotPassword {
           console.log(err);
 
           if (err.code === "UserNotFoundException") {
-            this.showAlert("The Username doesn't exist. Please try again.");
+            this.showAlert("The Email doesn't exist. Please try again.");
             document.getElementById("username").focus();
           } else {
             this.showAlert(err.message);
@@ -220,15 +220,15 @@ class ForgotPasswordComponent extends ForgotPassword {
     var flag = false;
     switch (type) {
       case 1:
-        if (document.getElementById("username").value.trim() == "") {
+        if (document.getElementById("username").value.trim() === "") {
           document.getElementById("username").focus();
-          msg = "Please enter Username.";
+          msg = "Please enter Email.";
           flag = true;
         }
         break;
       case 2:
         //Code
-        if (document.getElementById("rpwd-code").value.trim() == "") {
+        if (document.getElementById("rpwd-code").value.trim() === "") {
           document.getElementById("rpwd-code").focus();
           msg = "Please enter Code.";
           flag = true;
@@ -243,7 +243,7 @@ class ForgotPasswordComponent extends ForgotPassword {
         }
         //Password
         else if (
-          document.getElementById("rpwd-new_password").value.trim() == ""
+          document.getElementById("rpwd-new_password").value.trim() === ""
         ) {
           document.getElementById("rpwd-new_password").focus();
           msg = "Please enter Password.";
@@ -251,7 +251,7 @@ class ForgotPasswordComponent extends ForgotPassword {
         }
         //Password Criteria
         else if (
-          document.getElementById("rpwd-new_password").value.trim() != ""
+          document.getElementById("rpwd-new_password").value.trim() !== ""
         ) {
           let pwd = document.getElementById("rpwd-new_password").value.trim();
           if (pwd.length < 8) {
@@ -282,6 +282,8 @@ class ForgotPasswordComponent extends ForgotPassword {
           }
         }
         break;
+        default:
+          console.log('No case found!')
     }
 
     if (flag) {
@@ -291,6 +293,7 @@ class ForgotPasswordComponent extends ForgotPassword {
   }
 
   isSpecialCharacter(str) {
+    // eslint-disable-next-line
     let specialCharaterFormat = /[ !@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/;
     return specialCharaterFormat.test(str);
   }
@@ -298,13 +301,9 @@ class ForgotPasswordComponent extends ForgotPassword {
   isAlphabet(str) {
     let lowerCaseLetters = /[a-z]/g;
     let upperCaseLetters = /[A-Z]/g;
-    let numbers = /[0-9]/g;
-    let specialCharaterFormat = /[ !@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/;
-
     if (lowerCaseLetters.test(str) || upperCaseLetters.test(str)) {
       return true;
     }
-
     return false;
   }
 
@@ -355,6 +354,8 @@ class ForgotPasswordComponent extends ForgotPassword {
 
   showComponent(theme) {
     return (
+      <div>
+      <NavBarIcon />
       <div className="signin-container">
         <div id="snackbar">Some text some message..</div>
         <div className="page-Title">Reset your password</div>
@@ -362,7 +363,7 @@ class ForgotPasswordComponent extends ForgotPassword {
           <div className="filedDevide">
             <div id="forgot-password-confirmation-code-section">
               <label className="label-fields">
-                Email<span className="asteric">*</span>
+                E-mail<span className="asteric">*</span>
               </label>
               <input
                 id="username"
@@ -448,6 +449,7 @@ class ForgotPasswordComponent extends ForgotPassword {
           </div>
         </div>
         <div className="clear-both"></div>
+      </div>
       </div>
     );
   }

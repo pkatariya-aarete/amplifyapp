@@ -1,0 +1,14 @@
+{
+    "trigger": true,
+    "modules": [
+        "email-filter-whitelist"
+    ],
+    "parentResource": "ocramplifywebapp1908e8da",
+    "functionName": "ocramplifywebapp1908e8daPreSignup",
+    "parentStack": "auth",
+    "triggerEnvs": "[]",
+    "triggerTemplate": "PreSignup.json.ejs",
+    "roleName": "ocramplifywebapp1908e8daPreSignup",
+    "skipEdit": true,
+    "resourceName": "ocramplifywebapp1908e8daPreSignup"
+}

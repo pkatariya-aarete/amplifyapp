@@ -1,32 +1,32 @@
 {
   "files": {
-    "main.css": "/static/css/main.112922e8.chunk.css",
-    "main.js": "/static/js/main.23f9a880.chunk.js",
-    "main.js.map": "/static/js/main.23f9a880.chunk.js.map",
+    "main.css": "/static/css/main.19b1e0f7.chunk.css",
+    "main.js": "/static/js/main.8ebf2ea8.chunk.js",
+    "main.js.map": "/static/js/main.8ebf2ea8.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.2a28817a.js",
     "runtime-main.js.map": "/static/js/runtime-main.2a28817a.js.map",
-    "static/css/2.5331893f.chunk.css": "/static/css/2.5331893f.chunk.css",
-    "static/js/2.19ec425c.chunk.js": "/static/js/2.19ec425c.chunk.js",
-    "static/js/2.19ec425c.chunk.js.map": "/static/js/2.19ec425c.chunk.js.map",
+    "static/css/2.08323bdd.chunk.css": "/static/css/2.08323bdd.chunk.css",
+    "static/js/2.781c851d.chunk.js": "/static/js/2.781c851d.chunk.js",
+    "static/js/2.781c851d.chunk.js.map": "/static/js/2.781c851d.chunk.js.map",
     "index.html": "/index.html",
-    "precache-manifest.0e89f0ee30fd8805e8c47beee895cd5b.js": "/precache-manifest.0e89f0ee30fd8805e8c47beee895cd5b.js",
+    "precache-manifest.0cb78858bd7c625903c9aa14f5e6ee75.js": "/precache-manifest.0cb78858bd7c625903c9aa14f5e6ee75.js",
     "service-worker.js": "/service-worker.js",
-    "static/css/2.5331893f.chunk.css.map": "/static/css/2.5331893f.chunk.css.map",
-    "static/css/main.112922e8.chunk.css.map": "/static/css/main.112922e8.chunk.css.map",
-    "static/js/2.19ec425c.chunk.js.LICENSE": "/static/js/2.19ec425c.chunk.js.LICENSE",
+    "static/css/2.08323bdd.chunk.css.map": "/static/css/2.08323bdd.chunk.css.map",
+    "static/css/main.19b1e0f7.chunk.css.map": "/static/css/main.19b1e0f7.chunk.css.map",
+    "static/js/2.781c851d.chunk.js.LICENSE": "/static/js/2.781c851d.chunk.js.LICENSE",
     "static/media/Drag-Files.svg": "/static/media/Drag-Files.ed75c0ac.svg",
     "static/media/index.css": "/static/media/MercuryDisplay-Roman.c70cf0c3.woff",
     "static/media/upload.css": "/static/media/trash-alt.fb0f4c9c.svg",
-    "static/media/Signout-Icon.svg": "/static/media/Signout-Icon.ca31ce0d.svg",
     "static/media/arrow-up.svg": "/static/media/arrow-up.a7b7c045.svg",
     "static/media/semantic.min.css": "/static/media/outline-icons.ef60a4f6.woff",
+    "static/media/doczy-logo.png": "/static/media/doczy-logo.512ac5c6.png",
     "static/media/ocrbg.png": "/static/media/ocrbg.eba89b75.png"
   },
   "entrypoints": [
     "static/js/runtime-main.2a28817a.js",
-    "static/css/2.5331893f.chunk.css",
-    "static/js/2.19ec425c.chunk.js",
-    "static/css/main.112922e8.chunk.css",
-    "static/js/main.23f9a880.chunk.js"
+    "static/css/2.08323bdd.chunk.css",
+    "static/js/2.781c851d.chunk.js",
+    "static/css/main.19b1e0f7.chunk.css",
+    "static/js/main.8ebf2ea8.chunk.js"
   ]
 }

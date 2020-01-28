@@ -1,13 +1,13 @@
 import React from "react";
 import { SignUp } from "aws-amplify-react";
 import { Auth } from "aws-amplify";
+import { NavBarIcon } from "../NavBarComponent/NavBarComponent";
 
 //Register
 class SignUpComponent extends SignUp {
   state = {
     name: '',
     family_name: '',
-    username: '',
     password: '',
     email: '',
     submitBtnStatus: false,
@@ -25,8 +25,8 @@ class SignUpComponent extends SignUp {
 
     if (
       (this.state.name && this.state.family_name &&
-      this.state.username && this.state.password &&
-      this.state.email) === '') {
+      this.state.password && this.state.email)
+      === '') {
         this.setState({submitBtnStatus: true})
       } else {
       this.setState({submitBtnStatus: false})
@@ -34,6 +34,7 @@ class SignUpComponent extends SignUp {
   };
 
   validateEmail(email) {
+    // eslint-disable-next-line
     var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(String(email).toLowerCase());
   }
@@ -45,6 +46,7 @@ class SignUpComponent extends SignUp {
   }
 
   isSpecialCharacter(str) {
+    // eslint-disable-next-line
     let specialCharaterFormat = /[ !@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/;
     return specialCharaterFormat.test(str);
   }
@@ -89,12 +91,11 @@ class SignUpComponent extends SignUp {
 
   signUp(event) {
     if (!this.isDataValid()) {
-      const { name, family_name, username, password, email } = this.state;
+      const { name, family_name, password, email } = this.state;
       Auth.signUp({
         username: email,
         password,
         attributes: {
-          preferred_username: username,
           family_name,
           name
           },
@@ -112,7 +113,7 @@ class SignUpComponent extends SignUp {
               msg = "The E-mail address provided does not meet the domain criteria. Please try again.";
             }
           } else if (err.code === "UsernameExistsException") {
-            msg = "The Username already exist. Please try again.";
+            msg = "The E-mail already exist. Please try again.";
           } else if (err.code === "InvalidLambdaResponseException") {
             msg = "There was some error on server side. Please try again.";
           }
@@ -137,12 +138,6 @@ class SignUpComponent extends SignUp {
       msg = "Please enter Last Name.";
       flag = true;
     }
-    //Username
-    else if (document.getElementById("username").value.trim() === "") {
-      document.getElementById("username").focus();
-      msg = "Please enter Username.";
-      flag = true;
-    }
     //Password
     else if (document.getElementById("password").value.trim() === "") {
       document.getElementById("password").focus();
@@ -164,14 +159,6 @@ class SignUpComponent extends SignUp {
       flag = true;
       msg =
         "Password should contain at least 1 special character. Please try again.";
-    }
-    //Password contains alphabet
-    else if (
-      !this.isAlphabet(document.getElementById("password").value.trim())
-    ) {
-      document.getElementById("password").focus();
-      flag = true;
-      msg = "Password should contain at least 1 alphabet. Please try again.";
     }
     //Password contains numbers
     else if (!this.isNumber(document.getElementById("password").value.trim())) {
@@ -219,6 +206,8 @@ class SignUpComponent extends SignUp {
     const btnCss = this.state.submitBtnStatus ? "disabled" : ""
     //const pwdCss = 'default'
     return (
+      <div>
+      <NavBarIcon />
       <div className="signup-container">
         <div id="snackbar">Some text some message..</div>
         <div className="page-Title"> Create a new account </div>
@@ -240,22 +229,7 @@ class SignUpComponent extends SignUp {
             ></input>
 
             <label className="label-fields">
-              Username <span className="asteric"> * </span>
-            </label>
-
-            <input
-              id="username"
-              name="username"
-              className="input-fields"
-              type="text"
-              placeholder="john.doe"
-              value={this.state.username}
-              onChange={this.onChange}
-              tabIndex="3"
-            ></input>
-
-            <label className="label-fields">
-              E-mail <span className="asteric"> * </span>{" "}
+              E-mail <span className="asteric"> * </span>
             </label>
 
             <input
@@ -327,23 +301,28 @@ class SignUpComponent extends SignUp {
             onClick={this.signUp}
             tabIndex="6"
           >
-            {" "}
-            Create Account{" "}
+            Create Account
           </button>
           <div className="signIn">
-            <p className="secondary-link-signup m-topreset">
-              Have an account?{" "}
-              <span
-                className="sign-up-link graphic-regular link-pointer"
-                onClick={() => super.changeState("signIn")}
-                tabIndex="7"
-              >
-                {" "}
-                Sign In{" "}
-              </span>
-            </p>
+            <div className="secondary-link-signup m-topreset">
+              Have an account? {" "}
+            </div>
+            <span
+              className="sign-up-link graphic-regular link-pointer"
+              onClick={() => super.changeState("signIn")}
+              tabIndex="7"
+            >Sign In </span>
+            <div className="secondary-link-signup m-topreset">
+              Forgot to confirm Signup? {" "}
+            </div>
+            <span
+              className="sign-up-link graphic-regular link-pointer"
+              onClick={() => super.changeState("confirmSignUp")}
+              tabIndex="7"
+            >Confirm Signup </span>
           </div>
         </div>
+      </div>
       </div>
     );
   }

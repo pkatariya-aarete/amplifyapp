@@ -1,10 +1,10 @@
 import React from "react";
-import { Auth, Hub } from "aws-amplify";
+import { Hub } from "aws-amplify";
 import { Authenticator } from "aws-amplify-react";
 import config from "../aws-exports";
+import { Grid, Container } from "semantic-ui-react"
 
 import App from './App'
-import NavBarComponent from './NavBarComponent/NavBarComponent'
 import SignInComponent from "./LoginComponent/SignInComponent";
 import SignUpComponent from "./LoginComponent/SignUpComponent";
 import ForgotPasswordComponent from "./LoginComponent/ForgotPasswordComponent";
@@ -13,6 +13,7 @@ import SignUpConfimationComponent from "./LoginComponent/SignUpConfimationCompon
 import "../assets/styles/reset.css";
 import "./App.css";
 import "../assets/styles/style.css";
+import "../assets/styles/new_styles.css";
 import Background from "../assets/images/ocrbg.png";
 
 var sectionStyle = {
@@ -24,60 +25,48 @@ var sectionStyle = {
   position: "absolute"
 };
 
+export const UserContext = React.createContext();
+
 class AppWithAuth extends React.Component {
-  constructor(props, context){
-    super(props, context)
-    this.state = {
-      user: '',
-    }
+  
+  componentDidMount() {
     Hub.listen('auth', (data) => {
       const { payload } = data;
       this.onAuthEvent(payload);
     })
   }
-
+  
   onAuthEvent(payload) {
-    console.log(payload)
     switch (payload.event) {
       case "configured":
         break;
       case "signIn":
-        this.getUserData();
         break;
       case "signUp":
         break;
       case "signOut":
-        this.setState({ user: null });
         break;
       default:
         return;
     }
   }
 
-  getUserData = async () => {
-    const user = await Auth.currentAuthenticatedUser();
-    user
-      ? this.setState({ user }, () => this.getUserAttributes(this.state.user))
-      : this.setState({ user: null });
-  };
-
-  getUserAttributes = async authUserData => {
-    const attributesArr = await Auth.userAttributes(authUserData);
-    const attributesObj = Auth.attributesToObject(attributesArr);
-    this.setState({ userAttributes: attributesObj });
-  };
-
   render() {
     return (
       <div className="App" style={sectionStyle}>
-        <Authenticator amplifyConfig={config} hideDefault={true} >  
-          <NavBarComponent />
-          <SignInComponent />
-          <SignUpComponent />
-          <SignUpConfimationComponent />
-          <ForgotPasswordComponent />
-          <App />
-        </Authenticator>
+        <UserContext.Provider value={this.state}>
+        <Grid style={{height: '100vh'}}>
+          <Container fluid>
+            <Authenticator amplifyConfig={config} hideDefault={true} authState="signIn">
+              <SignInComponent />
+              <SignUpComponent />
+              <SignUpConfimationComponent />
+              <ForgotPasswordComponent />
+              <App />
+            </Authenticator>
+          </Container>
+        </Grid>
+        </UserContext.Provider>
       </div>
     );
   }

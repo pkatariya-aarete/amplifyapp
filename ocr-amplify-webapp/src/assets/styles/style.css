@@ -1,6 +1,6 @@
 .signup-container,
 .signin-container {
-  width: 40%;
+  width: 50%;
   float: left;
   margin: 3% 0px 0px 7%;
 }
@@ -48,6 +48,8 @@
   line-height: 26px;
   margin-bottom: 16px;
   padding: 0 5%;
+  outline-width: 2px;
+  outline-color: #f19411;
 }
 .createAccount {
   border-radius: 4.54px;
@@ -176,17 +178,19 @@ button,
   font-size: 14px;
 }
 .success-password {
-  border: 2px solid #008000 !important;
+  /*border: 2px solid #008000 !important;*/
+  outline-color: #008000 !important;
 }
 .error-password {
   border: 2px solid #ff5353 !important;
 }
 input#password:focus,
 input#rpwd-new_password:focus {
-  outline: none;
+  /*outline: none;*/
 }
 #passwordTooltip span {
-  color: #f19411;
+  /*color: #f19411;*/
+  color: #ccc;
 }
 #passwordTooltip {
   color: #ccc;
@@ -195,34 +199,43 @@ input#rpwd-new_password:focus {
   line-height: 21px;
   width: 260px;
   /* margin: -58px 3px 0 241px; */
-  margin: 0px 3px 0px 12px;
+  margin: 0px 3px 0px 20px;
   display: none;
 }
 .reset-password-passwordTooltip {
   margin: -70px 0px 0px 242px !important;
 }
-
+#passwordTooltip .default {
+  color: #646464;
+  /*padding-left: 10px;*/
+}
+#passwordTooltip .default:before {
+  position: relative;
+  /*left: -9px;*/
+  /*content: "✖";*/
+}
 #passwordTooltip .valid {
-  color: green;
-  padding-left: 10px;
+  color: #008000 !important;
+  /*padding-left: 10px;*/
+  margin-left: -11px;
 }
 
 #passwordTooltip .valid:before {
   position: relative;
-  left: -9px;
+  left: -6px;
   content: "✔";
 }
 
 /* Add a red text color and an "x" when the requirements are wrong */
 #passwordTooltip .invalid {
-  color: #ff5353;
-  padding-left: 10px;
+  color: #646464 !important;
+  /*padding-left: 10px;*/
 }
 
 #passwordTooltip .invalid:before {
   position: relative;
-  left: -9px;
-  content: "✖";
+  /*left: -9px;*/
+  /*content: "✖";*/
 }
 
 @media screen and (min-width: 1400px) {
@@ -236,20 +249,21 @@ input#rpwd-new_password:focus {
 }
 
 /******Snack Bar CSS : START**************/
+
 #snackbar {
+  font-family: Graphik Medium;
   visibility: hidden;
-  min-width: 250px;
-  margin-left: -125px;
-  background-color: #333;
+  background-color: #666;
   color: #fff;
   text-align: center;
   border-radius: 2px;
-  padding: 16px;
+  padding: 10px;
   position: fixed;
   z-index: 1;
-  left: 40%;
-  top: 50px;
-  font-size: 17px;
+  left: 0px;
+  top: 0px;
+  font-size: 16px;
+  width: 100%;
 }
 
 #snackbar.show {
@@ -275,14 +289,14 @@ input#rpwd-new_password:focus {
     opacity: 0;
   }
   to {
-    top: 30px;
+    top: 0px;
     opacity: 1;
   }
 }
 
 @-webkit-keyframes fadeout {
   from {
-    top: 30px;
+    top: 0px;
     opacity: 1;
   }
   to {
@@ -293,7 +307,7 @@ input#rpwd-new_password:focus {
 
 @keyframes fadeout {
   from {
-    top: 30px;
+    top: 0px;
     opacity: 1;
   }
   to {

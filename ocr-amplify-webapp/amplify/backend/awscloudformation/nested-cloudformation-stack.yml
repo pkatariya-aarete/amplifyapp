@@ -68,40 +68,15 @@
 				}
 			}
 		},
-		"functionocramplifywebapp17fe710aPostConfirmation": {
+		"authocramplifywebapp1908e8da": {
 			"Type": "AWS::CloudFormation::Stack",
 			"Properties": {
-				"TemplateURL": "https://s3.amazonaws.com/ocr-amplify-webapp-devv-20200115233307-deployment/amplify-cfn-templates/function/ocramplifywebapp17fe710aPostConfirmation-cloudformation-template.json",
+				"TemplateURL": "https://s3.amazonaws.com/amplify-ocr-amplify-webapp-master-110613-deployment/amplify-cfn-templates/auth/ocramplifywebapp1908e8da-cloudformation-template.yml",
 				"Parameters": {
-					"modules": "add-to-group",
-					"resourceName": "ocramplifywebapp17fe710aPostConfirmation",
-					"GROUP": "client-group1",
-					"env": "devv"
-				}
-			}
-		},
-		"functionocramplifywebapp17fe710aPreSignup": {
-			"Type": "AWS::CloudFormation::Stack",
-			"Properties": {
-				"TemplateURL": "https://s3.amazonaws.com/ocr-amplify-webapp-devv-20200115233307-deployment/amplify-cfn-templates/function/ocramplifywebapp17fe710aPreSignup-cloudformation-template.json",
-				"Parameters": {
-					"modules": "email-filter-whitelist",
-					"resourceName": "ocramplifywebapp17fe710aPreSignup",
-					"DOMAINWHITELIST": "aarete.com",
-					"env": "devv"
-				}
-			}
-		},
-		"authocramplifywebapp17fe710a": {
-			"Type": "AWS::CloudFormation::Stack",
-			"Properties": {
-				"TemplateURL": "https://s3.amazonaws.com/ocr-amplify-webapp-devv-20200115233307-deployment/amplify-cfn-templates/auth/ocramplifywebapp17fe710a-cloudformation-template.yml",
-				"Parameters": {
-					"identityPoolName": "ocramplifywebapp17fe710a_identitypool_17fe710a",
+					"identityPoolName": "ocramplifywebapp1908e8da_identitypool_1908e8da",
 					"allowUnauthenticatedIdentities": false,
-					"openIdLambdaRoleName": "ocramp17fe710a_openid_lambda_role",
-					"resourceNameTruncated": "ocramp17fe710a",
-					"userPoolName": "ocramplifywebapp17fe710a_userpool_17fe710a",
+					"resourceNameTruncated": "ocramp1908e8da",
+					"userPoolName": "ocramplifywebapp1908e8da_userpool_1908e8da",
 					"autoVerifiedAttributes": "email",
 					"mfaConfiguration": "OFF",
 					"mfaTypes": "SMS Text Message",
@@ -113,22 +88,14 @@
 					"passwordPolicyMinLength": 8,
 					"passwordPolicyCharacters": "",
 					"requiredAttributes": "email,family_name,name",
-					"userpoolClientName": "ocramp17fe710a_app_client",
 					"userpoolClientGenerateSecret": true,
 					"userpoolClientRefreshTokenValidity": 30,
 					"userpoolClientWriteAttributes": "email",
 					"userpoolClientReadAttributes": "email",
-					"mfaLambdaRole": "ocramp17fe710a_totp_lambda_role",
-					"userpoolClientLambdaRole": "ocramp17fe710a_userpoolclient_lambda_role",
+					"userpoolClientLambdaRole": "ocramp1908e8da_userpoolclient_lambda_role",
 					"userpoolClientSetAttributes": false,
-					"resourceName": "ocramplifywebapp17fe710a",
+					"resourceName": "ocramplifywebapp1908e8da",
 					"authSelections": "identityPoolAndUserPool",
-					"authRoleName": {
-						"Ref": "AuthRoleName"
-					},
-					"unauthRoleName": {
-						"Ref": "UnauthRoleName"
-					},
 					"authRoleArn": {
 						"Fn::GetAtt": [
 							"AuthRole",
@@ -142,51 +109,50 @@
 						]
 					},
 					"useDefault": "default",
-					"additionalQuestions": "requiredAttributes,triggers",
-					"triggers": "{\"PostConfirmation\":[\"add-to-group\"],\"PreSignup\":[\"email-filter-whitelist\"]}",
-					"PostConfirmation": "ocramplifywebapp17fe710aPostConfirmation",
-					"PreSignup": "ocramplifywebapp17fe710aPreSignup",
+					"usernameAttributes": "email",
+					"triggers": "{\"PreSignup\":[\"email-filter-whitelist\"]}",
+					"userPoolGroupList": "",
 					"parentStack": {
 						"Ref": "AWS::StackId"
 					},
-					"permissions": "{\"policyName\":\"AddToGroupCognito\",\"trigger\":\"PostConfirmation\",\"effect\":\"Allow\",\"actions\":[\"cognito-idp:AdminAddUserToGroup\",\"cognito-idp:GetGroup\",\"cognito-idp:CreateGroup\"],\"resource\":{\"paramType\":\"!GetAtt\",\"keys\":[\"UserPool\",\"Arn\"]}}",
-					"dependsOn": "[object Object],[object Object]",
-					"functionocramplifywebapp17fe710aPostConfirmationArn": {
+					"permissions": "",
+					"dependsOn": "[object Object]",
+					"functionocramplifywebapp1908e8daPreSignupArn": {
 						"Fn::GetAtt": [
-							"functionocramplifywebapp17fe710aPostConfirmation",
+							"functionocramplifywebapp1908e8daPreSignup",
 							"Outputs.Arn"
 						]
 					},
-					"functionocramplifywebapp17fe710aPostConfirmationName": {
+					"functionocramplifywebapp1908e8daPreSignupName": {
 						"Fn::GetAtt": [
-							"functionocramplifywebapp17fe710aPostConfirmation",
+							"functionocramplifywebapp1908e8daPreSignup",
 							"Outputs.Name"
 						]
 					},
-					"functionocramplifywebapp17fe710aPreSignupArn": {
-						"Fn::GetAtt": [
-							"functionocramplifywebapp17fe710aPreSignup",
-							"Outputs.Arn"
-						]
-					},
-					"functionocramplifywebapp17fe710aPreSignupName": {
-						"Fn::GetAtt": [
-							"functionocramplifywebapp17fe710aPreSignup",
-							"Outputs.Name"
-						]
-					},
-					"env": "devv"
+					"env": "master"
 				}
 			}
 		},
-		"storages3uploadfunction": {
+		"functionocramplifywebapp1908e8daPreSignup": {
 			"Type": "AWS::CloudFormation::Stack",
 			"Properties": {
-				"TemplateURL": "https://s3.amazonaws.com/ocr-amplify-webapp-devv-20200115233307-deployment/amplify-cfn-templates/storage/s3-cloudformation-template.json",
+				"TemplateURL": "https://s3.amazonaws.com/amplify-ocr-amplify-webapp-master-110613-deployment/amplify-cfn-templates/function/ocramplifywebapp1908e8daPreSignup-cloudformation-template.json",
+				"Parameters": {
+					"modules": "email-filter-whitelist",
+					"resourceName": "ocramplifywebapp1908e8daPreSignup",
+					"DOMAINWHITELIST": "aarete.com",
+					"env": "master"
+				}
+			}
+		},
+		"storageocrS3Storage": {
+			"Type": "AWS::CloudFormation::Stack",
+			"Properties": {
+				"TemplateURL": "https://s3.amazonaws.com/amplify-ocr-amplify-webapp-master-110613-deployment/amplify-cfn-templates/storage/s3-cloudformation-template.json",
 				"Parameters": {
 					"bucketName": "aarete-ocr",
-					"authPolicyName": "s3_amplify_a8171a6e",
-					"unauthPolicyName": "s3_amplify_a8171a6e",
+					"authPolicyName": "s3_amplify_1c316196",
+					"unauthPolicyName": "s3_amplify_1c316196",
 					"authRoleName": {
 						"Ref": "AuthRoleName"
 					},
@@ -196,30 +162,30 @@
 					"selectedGuestPermissions": "s3:GetObject,s3:ListBucket",
 					"selectedAuthenticatedPermissions": "s3:PutObject,s3:GetObject,s3:ListBucket",
 					"s3PermissionsAuthenticatedPublic": "s3:PutObject,s3:GetObject",
-					"s3PublicPolicy": "Public_policy_d28cc8fb",
+					"s3PublicPolicy": "Public_policy_5e9d901a",
 					"s3PermissionsAuthenticatedUploads": "s3:PutObject",
-					"s3UploadsPolicy": "Uploads_policy_d28cc8fb",
+					"s3UploadsPolicy": "Uploads_policy_5e9d901a",
 					"s3PermissionsAuthenticatedProtected": "s3:PutObject,s3:GetObject",
-					"s3ProtectedPolicy": "Protected_policy_d28cc8fb",
+					"s3ProtectedPolicy": "Protected_policy_5e9d901a",
 					"s3PermissionsAuthenticatedPrivate": "s3:PutObject,s3:GetObject",
-					"s3PrivatePolicy": "Private_policy_d28cc8fb",
+					"s3PrivatePolicy": "Private_policy_5e9d901a",
 					"AuthenticatedAllowList": "ALLOW",
-					"s3ReadPolicy": "read_policy_d28cc8fb",
+					"s3ReadPolicy": "read_policy_5e9d901a",
 					"s3PermissionsGuestPublic": "DISALLOW",
 					"s3PermissionsGuestUploads": "DISALLOW",
 					"GuestAllowList": "DISALLOW",
 					"triggerFunction": "NONE",
-					"env": "devv"
+					"env": "master"
 				}
 			}
 		},
 		"hostingS3AndCloudFront": {
 			"Type": "AWS::CloudFormation::Stack",
 			"Properties": {
-				"TemplateURL": "https://s3.amazonaws.com/ocr-amplify-webapp-devv-20200115233307-deployment/amplify-cfn-templates/hosting/template.json",
+				"TemplateURL": "https://s3.amazonaws.com/amplify-ocr-amplify-webapp-master-110613-deployment/amplify-cfn-templates/hosting/template.json",
 				"Parameters": {
-					"bucketName": "ocr-amplify-webapp-20200116002434-hostingbucket",
-					"env": "devv"
+					"bucketName": "ocr-amplify-webapp-20200127095236-hostingbucket",
+					"env": "master"
 				}
 			}
 		},
@@ -227,7 +193,7 @@
 			"DependsOn": [
 				"AuthRole",
 				"UnauthRole",
-				"authocramplifywebapp17fe710a"
+				"authocramplifywebapp1908e8da"
 			],
 			"Type": "AWS::Lambda::Function",
 			"Properties": {
@@ -310,7 +276,7 @@
 				},
 				"idpId": {
 					"Fn::GetAtt": [
-						"authocramplifywebapp17fe710a",
+						"authocramplifywebapp1908e8da",
 						"Outputs.IdentityPoolId"
 					]
 				},

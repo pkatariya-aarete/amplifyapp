@@ -1,33 +1,12 @@
 {
-	"function": {
-		"ocramplifywebapp17fe710aPostConfirmation": {
-			"service": "Lambda",
-			"providerPlugin": "awscloudformation",
-			"build": true
-		},
-		"ocramplifywebapp17fe710aPreSignup": {
-			"service": "Lambda",
-			"providerPlugin": "awscloudformation",
-			"build": true
-		}
-	},
 	"auth": {
-		"ocramplifywebapp17fe710a": {
+		"ocramplifywebapp1908e8da": {
 			"service": "Cognito",
 			"providerPlugin": "awscloudformation",
 			"dependsOn": [
 				{
 					"category": "function",
-					"resourceName": "ocramplifywebapp17fe710aPostConfirmation",
-					"triggerProvider": "Cognito",
-					"attributes": [
-						"Arn",
-						"Name"
-					]
-				},
-				{
-					"category": "function",
-					"resourceName": "ocramplifywebapp17fe710aPreSignup",
+					"resourceName": "ocramplifywebapp1908e8daPreSignup",
 					"triggerProvider": "Cognito",
 					"attributes": [
 						"Arn",
@@ -37,8 +16,15 @@
 			]
 		}
 	},
+	"function": {
+		"ocramplifywebapp1908e8daPreSignup": {
+			"service": "Lambda",
+			"providerPlugin": "awscloudformation",
+			"build": true
+		}
+	},
 	"storage": {
-		"s3uploadfunction": {
+		"ocrS3Storage": {
 			"service": "S3",
 			"providerPlugin": "awscloudformation"
 		}

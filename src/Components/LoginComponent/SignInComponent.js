@@ -98,7 +98,7 @@ class SignInComponent extends SignIn {
                 name="username"
                 className="input-fields"
                 type="text"
-                placeholder="john.doe"
+                placeholder="john.doe@aarete.com"
                 value={this.state.username}
                 onChange={this.onChange}
               ></input>

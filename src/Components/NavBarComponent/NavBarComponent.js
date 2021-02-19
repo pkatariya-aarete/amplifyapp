@@ -20,62 +20,54 @@ export function NavBarIcon(){
 
 class NavBarComponent extends ForgotPassword {
   state= {
-    name: '',
-    activeItem: ''
-  }
-
-  static getDerivedStateFromProps(props, state) {
-    if (props.authData){
-      const { attributes } = props.authData
-      return {name: attributes.name}
-    }
-    return null
+    user: 'User',
+    activeItem: 'upload'
   }
 
   signOut() {
     Auth.signOut()
       .then(data => {
-        this._validAuthStates = ["signIn"];
       })
       .catch(err => console.log(err));
   }
 
+  handleItemClick = (e, { name }) => this.setState({ activeItem: name })
+
   render(){
-    if (this.props.authState === "signedIn") {
-      return (
-        <Menu borderless inverted //fixed='top'
-          style={{backgroundColor: 'rgba(52, 52, 52, 0)'}}
-        >
-          <Menu.Item position='left'>
-            <Image size='medium' src={logo} />
-          </Menu.Item>
-          <Menu.Item as={ Link } to='/'
-            position='right'
-            name='upload'
-            //active={activeItem === 'upload'}
+    const { activeItem } = this.state;
+    const { userAttributes } = this.props;
+    return (
+      <Menu borderless inverted //fixed='top'
+        style={{backgroundColor: 'rgba(52, 52, 52, 0)'}}
+      >
+        <Menu.Item position='left'>
+          <Image size='medium' src={logo} />
+        </Menu.Item>
+        <Menu.Item as={ Link } to='/'
+          position='right'
+          name='upload'
+          active={activeItem === 'upload'}
+          onClick={this.handleItemClick}
+        />
+        <Menu.Item as={ Link } to='/results'
+          name='results'
+          active={activeItem === 'results'}
+          onClick={this.handleItemClick}
+        />
+        <Menu.Item
+          // eslint-disable-next-line
+          name={`Hello!! ${userAttributes.name}`}
+        />
+        <Menu.Item>
+          <Button
+            content='Signout'
+            icon='power off'
+            color='orange'
+            onClick={() => this.signOut()}
           />
-          <Menu.Item as={ Link } to='/results'
-            name='results'
-            //active={activeItem === 'results'}
-          />
-          <Menu.Item
-            // eslint-disable-next-line
-            name={`Hello!! ${this.state.name}`}
-          />
-          <Menu.Item>
-            <Button
-              content='Signout'
-              icon='power off'
-              color='orange'
-              onClick={() => this.signOut()}
-              
-            />
-          </Menu.Item>
-        </Menu>
-      )
-    } else {
-      NavBarIcon()
-    }
+        </Menu.Item>
+      </Menu>
+    )
   }
 }
 

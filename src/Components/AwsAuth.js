@@ -1,5 +1,4 @@
 import React from "react";
-import { Hub } from "aws-amplify";
 import { Authenticator } from "aws-amplify-react";
 import config from "../aws-exports";
 import { Grid, Container } from "semantic-ui-react"
@@ -27,49 +26,45 @@ var sectionStyle = {
 
 export const UserContext = React.createContext();
 
-class AppWithAuth extends React.Component {
-  
-  componentDidMount() {
-    Hub.listen('auth', (data) => {
-      const { payload } = data;
-      this.onAuthEvent(payload);
-    })
+function authenticationFlow(authState) {
+  switch(authState) {
+    case 'signIn':
+      return <SignInComponent override={'SignIn'} />
+    case 'signedIn':
+      return <App />
+    case 'signUp':
+      return <SignUpComponent override={'SignUp'} />
+    case 'confirmSignUp':
+      return <SignUpConfimationComponent override={'ConfirmSignUp'} />
+    case 'forgotPassword':
+      return <ForgotPasswordComponent override={'ForgotPassword'} />
+    default:
+      return <SignInComponent override={'SignIn'} />
   }
-  
-  onAuthEvent(payload) {
-    switch (payload.event) {
-      case "configured":
-        break;
-      case "signIn":
-        break;
-      case "signUp":
-        break;
-      case "signOut":
-        break;
-      default:
-        return;
-    }
-  }
+}
 
+class AwsAuth extends React.Component {
+  state = {
+    authState:'signIn'
+  }
   render() {
+    const { authState } = this.state
     return (
       <div className="App" style={sectionStyle}>
-        <UserContext.Provider value={this.state}>
         <Grid style={{height: '100vh'}}>
           <Container fluid>
-            <Authenticator amplifyConfig={config} hideDefault={true} authState="signIn">
-              <SignInComponent />
-              <SignUpComponent />
-              <SignUpConfimationComponent />
-              <ForgotPasswordComponent />
-              <App />
+            <Authenticator amplifyConfig={config}
+              hideDefault={true}
+              authState={authState}
+              onStateChange={(authState) => this.setState({authState:authState}) }
+            >
+              { authenticationFlow(authState) }
             </Authenticator>
           </Container>
         </Grid>
-        </UserContext.Provider>
       </div>
     );
   }
 }
 
-export default AppWithAuth;
+export default AwsAuth;

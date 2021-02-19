@@ -4,9 +4,9 @@ import 'semantic-ui-css/semantic.min.css';
 import Amplify from "aws-amplify";
 import aws_exports from "./aws-exports";
 
-import AppWithAuth from "./Components/AppWithAuth";
+import AwsAuth from "./Components/AwsAuth";
 import "./index.css";
 
 Amplify.configure(aws_exports);
 
-ReactDOM.render(<AppWithAuth />, document.getElementById("root"));
+ReactDOM.render(<AwsAuth />, document.getElementById("root"));

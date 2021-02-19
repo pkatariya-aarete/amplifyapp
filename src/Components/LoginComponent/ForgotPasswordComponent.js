@@ -401,16 +401,16 @@ class ForgotPasswordComponent extends ForgotPassword {
                 onBlur={this.onBlurPasswordValidation}
                 onFocus={this.onFocusPasswordValidation}
               ></input>
-              <div id="passwordTooltip" class="reset-password-passwordTooltip">
+              <div id="passwordTooltip" className="reset-password-passwordTooltip">
                 <div id="message">
                   <span>Password must contain the following:</span>
-                  <p id="password-number" class="default">
+                  <p id="password-number" className="default">
                     At least 1 <b>number</b>
                   </p>
-                  <p id="password-specialCharacter" class="default">
+                  <p id="password-specialCharacter" className="default">
                     At least 1 <b>special character</b>
                   </p>
-                  <p id="password-length" class="default">
+                  <p id="password-length" className="default">
                     Minimum length of <b>8 characters</b>
                   </p>
                 </div>

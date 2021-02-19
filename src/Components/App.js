@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { Auth } from "aws-amplify";
 
 import NavBarComponent from './NavBarComponent/NavBarComponent';
 import FileUploadComponent from './FileUploadComponent/FileUploadComponent';
@@ -7,30 +8,29 @@ import ResultsComponent from './ResultsComponent/ResultsComponent';
 
 class App extends React.Component {
   state = {
-    authData: null,
-    authState: null
+    cognito:null
   }
 
-  static getDerivedStateFromProps(props, state) {
-    let prevState = state
-    if (props.authData !== state.authData){
-      const { authData } = props
-      prevState = {...prevState, authData:authData}
-    }
-    if (props.authState !== state.authState){
-      const { authState } = props
-      prevState = {...prevState, authState:authState}
-    }
-    return prevState
+  getCurrentUser() {
+    Auth.currentAuthenticatedUser().then(cognito => {
+      this.setState({
+        cognito
+      });
+    });
   }
 
+  componentDidMount(){
+    this.getCurrentUser()
+  }
 
   render(){
-    if (this.props.authState === "signedIn") {
+    const { authState } = this.props
+    const { cognito } = this.state
+    if (authState === 'signedIn' && cognito !== null ) {
       return (
         <div>
           <Router>
-            <NavBarComponent authData={this.state.authData} authState={this.state.authState} />  
+            <NavBarComponent userAttributes={cognito.attributes} />
             <Switch>
               <Route path='/' exact component={FileUploadComponent} />
               <Route path='/results' exact component={ResultsComponent} />
@@ -39,8 +39,8 @@ class App extends React.Component {
         </div>
       )
     } else {
-      return null;
-    }
+      return null
+    }   
   }
 }
 

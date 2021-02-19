@@ -73,12 +73,13 @@ class SignInComponent extends SignIn {
   }
 
   showAlert(msg) {
-    var x = document.getElementById("snackbar");
-    x.innerHTML = msg;
-    x.className = "show";
-    setTimeout(function() {
-      x.className = x.className.replace("show", "");
-    }, 4000);
+    //var x = document.getElementById("snackbar");
+    //x.innerHTML = msg;
+    //x.className = "show";
+    //setTimeout(function() {
+    //  x.className = x.className.replace("show", "");
+    //}, 4000);
+    console.log(msg);
   }
 
   showComponent(theme) {

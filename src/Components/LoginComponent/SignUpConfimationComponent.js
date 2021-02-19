@@ -46,16 +46,13 @@ class SignUpConfimationComponent extends ConfirmSignUp {
     const { email, code } = this.state;
     let username = email
     if (!this.isDataValid()) {
-      // After retrieving the confirmation code from the user
       Auth.confirmSignUp(username, code, {
         forceAliasCreation: true
       })
         .then(data => {
-          console.log(data);
           super.changeState("signIn");
         })
         .catch(err => {
-          console.log(err);
           this.showAlert(err.message);
         });
     }

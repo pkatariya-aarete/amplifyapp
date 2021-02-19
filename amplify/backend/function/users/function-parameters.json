@@ -1,0 +1,12 @@
+{
+    "permissions": {
+        "auth": {
+            "ocramplifywebapp1908e8da": [
+                "create",
+                "read",
+                "update",
+                "delete"
+            ]
+        }
+    }
+}

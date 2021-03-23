@@ -18,12 +18,12 @@
   position: relative;
 }
 .page-Title {
-  color: red;
+  color: #ffffff;
   font-family: "MercuryDisplay-Roman";
   font-size: 30px;
   display: block;
   text-align: left;
-  margin-bottom: 36px;
+  margin-bottom: 50px;
 }
 .label-fields {
   height: 22px;
@@ -140,10 +140,11 @@
   clear: both;
 }
 .signIn {
-  width: 48%;
+  /* width: 48%; */
   margin-top: 10px;
-  margin-left: 20px;
+  /* margin-left: 20px; */
   float: left;
+  clear: both;
 }
 
 button,
@@ -316,3 +317,64 @@ input#rpwd-new_password:focus {
   }
 }
 /******Snack Bar CSS: END **************/
+.ui.mini.buttons button{
+background-color: transparent;
+color:#616161
+}
+.docList{
+  background-color: #212121;
+  padding: 4% !important;
+  border-radius: 5px;
+  font-family: Graphik Regular;
+}
+.docList h1{
+  font-family: Graphik Regular;
+  font-size: 14px;
+  margin-top: 7px;
+  color: #c6c6c6;
+}
+.ui.divider, .ui.left.floated.header.uploadFiles,
+.ui.right.floated.header.uploadFiles{
+color: #ffffff;
+}
+.ui.right.floated.header.uploadFiles{
+  margin-left: 16px;
+}
+.ui.divided.list>.item{
+  border-top:1px solid #434343;
+}
+.pageTitleResult{
+  /* margin-left: 80px; */
+  width: 412px !important;
+}
+.ui.left.floated.header.uploadFiles,
+.ui.right.floated.header.uploadFiles{
+  font-size: 16px;
+  font-family: Graphik Regular;
+  margin-top: 10px;
+}
+.sheet-names{
+  display: none !important;
+}
+.react-grid-HeaderCell{
+  background-color: #fff;
+}
+.react-grid-HeaderCell, .react-grid-Cell{
+  border: none;
+  font-size: 14px;
+}
+.react-grid-Cell{
+  background-color: #fafafa;
+}
+.eleven.wide.column{
+  padding-right: 10px !important;
+  padding-left:0 !important;
+}
+.react-grid-Grid, .react-grid-Main{
+  border-radius: 5px !important;
+}
+.uploadFilesBlock, .viewResultsHyperlink, 
+.viewResultsHyperlink:hover{
+  color: #f19411;
+  cursor: pointer
+}

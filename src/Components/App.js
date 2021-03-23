@@ -24,13 +24,13 @@ class App extends React.Component {
   }
 
   render(){
-    const { authState } = this.props
+    const { authState} = this.props
     const { cognito } = this.state
     if (authState === 'signedIn' && cognito !== null ) {
       return (
         <div>
           <Router>
-            <NavBarComponent userAttributes={cognito.attributes} />
+            <NavBarComponent userAttributes={cognito.attributes}/>
             <Switch>
               <Route path='/' exact component={FileUploadComponent} />
               <Route path='/results' exact component={ResultsComponent} />

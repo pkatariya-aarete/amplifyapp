@@ -37,9 +37,40 @@
   }
 }*/
 
-.App {
+.ui.fluid.container {
   color: #fff;
-  height: 100%;
-  float: left;
   width: 100%;
+  background-size:cover !important;                      
+  background-repeat: no-repeat !important;
+  background-position: center center !important;  
+  background-attachment: fixed !important; 
+  /* height: 100vh !important;  */
+  position: unset !important;
+  background-image: url("../assets/images/ocrbg.png") !important;
 }
+.ui.grid {
+  margin: 0;
+  padding: 0;
+}
+.spreadsheet-viewer input,
+.react-grid-HeaderCell,
+.react-grid-Cell,
+.react-grid-Row.react-grid-Row--even:hover,
+.react-grid-Row.react-grid-Row--odd:hover{
+  color:#000;
+  font-family: Graphik Regular;
+  /* background-color: transparent; */
+}
+.sheet-names{
+  display: none !important;
+}
+/* .react-grid-HeaderCell, 
+.react-grid-Cell{
+  width: 100px !important;
+} */
+/* .react-grid-Grid{
+  min-height: 215px !important;
+}
+.react-grid-Canvas{
+  height: 176px !important;
+} */

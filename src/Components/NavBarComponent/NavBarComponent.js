@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import logo from './assets/doczy-logo.png';
 
 export function NavBarIcon(){
+ 
   return(
     <Menu borderless inverted //fixed='top'
       style={{backgroundColor: 'rgba(52, 52, 52, 0)'}}
@@ -23,14 +24,25 @@ class NavBarComponent extends ForgotPassword {
     user: 'User',
     activeItem: 'upload'
   }
-
   signOut() {
     Auth.signOut()
       .then(data => {
       })
       .catch(err => console.log(err));
   }
-
+ 
+  componentDidMount() {
+    const currentLocation = window.location;
+    const activePath = currentLocation.pathname.split("/")[1];
+    console.log(activePath);
+    if(activePath === 'results'){
+    this.setState({ activeItem: 'results'})
+    }
+    else{
+      this.setState({ activeItem: 'upload'})
+    }
+  }
+ 
   handleItemClick = (e, { name }) => this.setState({ activeItem: name })
 
   render(){

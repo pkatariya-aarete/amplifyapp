@@ -3,6 +3,7 @@ import { Storage } from "aws-amplify";
 import upload from "./assets/arrow-up.svg";
 import dropbox from "./assets/Drag-Files.svg";
 import "./assets/upload.css";
+import {Link} from 'react-router-dom';
 
 class FileUploadComponent extends React.Component {
   constructor(props) {
@@ -11,14 +12,35 @@ class FileUploadComponent extends React.Component {
     this.handleClick = this.handleClick.bind(this);
     this.deleteFileIndex = 0;
     this.state = {
-      fileName: "Choose files to upload",
+      fileName: "Choose files",
       fileList: [],
       uniqueList: [],
       fileDetails: [],
-      revisedFiles: []
+      revisedFiles: [],
+      url:'',
+      successMsg:false,
     };
   }
 
+  getUrl(event){
+    if(event.target.value !== ''){
+      this.setState({url: event.target.value})
+    }
+  }
+ 
+
+           
+
+  ShowMessage(){
+    setTimeout(() => {
+      this.setState({successMsg: true});
+    }, 2000)
+    // setTimeout(function(){ 
+    //   let msg =
+    //             "<p className='submitNoteNew'> <span>File <span>uploaded successfully</span> <span class='uploadFilesBlock'><Link class='viewResultsHyperlink' to='/results'>view results</Link></span> </p>";
+    //           document.getElementById("showMessage").innerHTML = msg;
+    //  }, 3000);
+  }
   uploadFile(event) {
     let files = event.target.files;
     let filesTempArray = [];
@@ -85,7 +107,7 @@ class FileUploadComponent extends React.Component {
         });
       } else {
         this.setState({
-          fileName: "Choose files to upload"
+          fileName: "Choose files"
         });
         document.getElementById("submit-file-msg-id").style.display = "none";
       }
@@ -112,25 +134,26 @@ class FileUploadComponent extends React.Component {
     });
 
     this.setState({
-      fileName: "Choose files to upload"
+      fileName: "Choose files"
     });
 
     document.getElementById("submit-file-msg-id").style.display = "none";
   }
 
   UploadFilesToS3(event) {
+   
     var files = this.state.fileDetails;
     var filesCount = files.length;
 
     var docx = {
       fileFormat:
         "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-      folderPath: "dev/source-documents-docx/client-groups/cg1/"
+      folderPath: "dev/result-excel/client-groups/cg1/"
     };
 
     var pdf = {
       fileFormat: "application/pdf",
-      folderPath: "dev/source-documents-pdf/client-groups/cg1/"
+      folderPath: "dev/result-excel/client-groups/cg1/"
     };
     var uploadFileCount = 0;
     for (var i = 0; i < filesCount; i++) {
@@ -294,7 +317,7 @@ class FileUploadComponent extends React.Component {
     } else {
       //Set selected file text
       this.setState({
-        fileName: "Choose files to upload"
+        fileName: "Choose files"
       });
 
       //hide file submit message
@@ -364,7 +387,7 @@ class FileUploadComponent extends React.Component {
       }
     } else {
       this.setState({
-        fileName: "Choose files to upload"
+        fileName: "Choose files"
       });
 
       document.getElementById("submit-file-msg-id").style.display = "none";
@@ -426,9 +449,21 @@ class FileUploadComponent extends React.Component {
           </div>
         </div>
         <div className="upload-container">
-          <div className="page-Title">Upload Document</div>
+        <div className="page-Title">Upload Document</div>
+        <div className="">
           <div className="field-container">
-            <div className="filedDevide1">
+          <p className="labelTitle">Document Type</p>
+          <p className="labelTitle">Clause</p>
+            <select className="appendixDropdown">
+              <option>Appendix A</option>
+              <option>Appendix B</option>
+              <option>Appendix C</option>
+              <option>Appendix D</option>
+            </select>
+
+            <input type="text" className="EnterClause"></input>
+  
+            <div className="filedDevide1" style={{display:'none'}}>
               <input
                 type="file"
                 name="file"
@@ -449,8 +484,8 @@ class FileUploadComponent extends React.Component {
                 <img src={upload} alt="upload" />
               </button>
             </div>
+            </div>
           </div>
-
           <div className="file-upload" droppable="true">
             <div
               className="dropBox-component H250"
@@ -489,7 +524,7 @@ class FileUploadComponent extends React.Component {
               ) : (
                 <div className="dropBox-component align-center">
                   <img src={dropbox} alt="dropfile" className="dropImg"></img>
-                  <p>Drop your files here</p>
+                  <p>Drop your files here or <span className="uploadFilesBlock" onClick={this.handleClick.bind(this)}>Upload Files</span></p>
                 </div>
               )}
             </div>
@@ -500,13 +535,32 @@ class FileUploadComponent extends React.Component {
               delete all files.
             </p>
           </div>
+          <div className="testLable">
+            <p className="labelTitle upDoc">Document URL</p>
+            {/* <p className="labelTitle upDoc">Clause</p> */}
+            {/* <input type="text" className="EnterClause"></input> */}
+          </div>
+          <div>
+            <input type="text" className="inputURL" onChange={(event) => this.getUrl(event)}/>
+            <div id="showMessage" style={{float:'left'}}>
+              {this.state.successMsg ?
+              <p className='submitNoteNew'> <span>File <span>uploaded successfully,</span> <span className='uploadFilesBlock'><a className='viewResultsHyperlink' href='/results' >view results.</a></span> </span></p>
+              :''}
+            </div>
+          </div>
+          
+
           <div className="crt-account">
             <button
               id="submitBtn"
-              className={`createAccountUpload ${
-                this.state.fileDetails.length ? "activeBtn" : "disabled"
+               className={`createAccountUpload ${
+                this.state.url!== '' ? "activeBtn" : "disabled"
               }`}
-              onClick={() => this.UploadFilesToS3()}
+              // className={`createAccountUpload ${
+              //   this.state.fileDetails.length ? "activeBtn" : "disabled"
+              // }`}
+              // onClick={() => this.UploadFilesToS3()}
+              onClick={() => this.ShowMessage()}
             >
               Submit
             </button>

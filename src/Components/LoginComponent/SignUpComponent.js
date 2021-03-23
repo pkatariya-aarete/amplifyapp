@@ -242,6 +242,39 @@ class SignUpComponent extends SignUp {
               onChange={this.onChange}
               tabIndex="5"
             ></input>
+
+<div className="crt-account">
+            <button
+              id="signUpButton"
+              className={`createAccount ${btnCss}` }
+              onClick={this.signUp}
+              tabIndex="6"
+            >
+              Create Account
+            </button>
+       
+            <div className="signIn">
+              <div className="secondary-link-signup m-topreset">
+                Have an account? {" "}
+
+                <span
+                className="sign-up-link graphic-regular link-pointer"
+                onClick={() => super.changeState("signIn")}
+                tabIndex="7"
+              >Sign In </span>
+              </div>
+              
+              <div className="secondary-link-signup m-topreset">
+                Forgot to confirm Signup? {" "}
+                
+              </div>
+              <span
+                className="sign-up-link graphic-regular link-pointer"
+                onClick={() => super.changeState("confirmSignUp")}
+                tabIndex="7"
+              >Confirm Signup </span>
+            </div>
+          </div>
           </div>
 
           <div className="filedDevide">
@@ -294,35 +327,8 @@ class SignUpComponent extends SignUp {
           </div>
         </div>
 
-        <div className="crt-account">
-          <button
-            id="signUpButton"
-            className={`createAccount ${btnCss}` }
-            onClick={this.signUp}
-            tabIndex="6"
-          >
-            Create Account
-          </button>
-          <div className="signIn">
-            <div className="secondary-link-signup m-topreset">
-              Have an account? {" "}
-            </div>
-            <span
-              className="sign-up-link graphic-regular link-pointer"
-              onClick={() => super.changeState("signIn")}
-              tabIndex="7"
-            >Sign In </span>
-            <div className="secondary-link-signup m-topreset">
-              Forgot to confirm Signup? {" "}
-            </div>
-            <span
-              className="sign-up-link graphic-regular link-pointer"
-              onClick={() => super.changeState("confirmSignUp")}
-              tabIndex="7"
-            >Confirm Signup </span>
-          </div>
+        
         </div>
-      </div>
       </div>
     );
   }

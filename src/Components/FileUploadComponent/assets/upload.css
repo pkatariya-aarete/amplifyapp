@@ -6,15 +6,15 @@
   position: absolute;
   z-index: -1;
 }
-.inputfile + label {
+.inputfile + label{
   font-size: 14px;
   font-weight: 500;
   background-color: #3a3a3a;
   display: inline-block;
-  padding: 13px 72px 13px 10px;
+  padding: 13px 72px 15px 10px;
   margin-right: 10px;
   text-align: left;
-  width: 374px;
+  width: 210px;
   font-family: Graphik Regular;
   border-radius: 3px;
   color: #eaeaea;
@@ -32,14 +32,14 @@
 .file-upload {
   border: 2px rgba(151, 151, 151, 0.22) dashed;
   width: 502px;
-  /*height: 260px;*/
-  height: 355px;
+  height: 170px;
+  /* height: 355px; */
   float: left;
-  margin-top: 35px;
+  /* margin-top: 35px; */
   border-radius: 3px;
   font-family: Graphik Regular;
   font-size: 12px;
-  margin: 25px 0 16px 0;
+  margin-bottom: 8px;
   overflow-y: auto;
   color: #9b9b9b;
   position: relative;
@@ -181,6 +181,15 @@ input {
   font-family: Graphik Regular;
   font-size: 14px;
 }
+.submitNoteNew {
+  color: #ccc;
+  float: left;
+  clear: both;
+  font-family: Graphik Regular;
+  font-size: 14px;
+  margin-bottom: 0px !important;
+  padding: 0;
+}
 
 .submitNote span {
   color: #f19411;
@@ -210,11 +219,11 @@ input {
 .clearAll {
   background: none;
   border: none;
-  color: #fff;
+  color: #f2711c;
   /*float: right;*/
-  font-family: Graphik Medium;
-  font-size: 18px;
-  margin: 23px 50px 0 25px;
+  font-family: Graphik Regular;
+  font-size: 14px;
+  margin: 26px 50px 0 20px;
 }
 .disabled {
   background: #7d7d7d !important;
@@ -252,7 +261,7 @@ input {
 .upload-container {
   width: 44%;
   float: left;
-  margin: 3% 0px 0px 7%;
+  margin-left: 7%;
 }
 @media screen and (min-width: 1400px) {
   .file-upload {
@@ -266,6 +275,37 @@ input {
 .projectName-upload {
   margin-bottom: 3% !important;
 }
+/********Update UI start**************/
+.appendixDropdown, .EnterClause, .inputURL{
+  font-size: 14px;
+    font-weight: 500;
+    background-color: #3a3a3a;
+    display: inline-block;
+    padding: 8px 10px 13px 10px;
+    margin-right: 10px;
+    text-align: left;
+    width: 246px;
+    font-family: Graphik Regular;
+    border-radius: 3px;
+    color: #eaeaea;
+    border: none;
+    margin-bottom: 20px;
+}
+ .inputURL{
+  margin-bottom: 10px;
+  width:502px;
+  float: left;
+  display: block  ;
+}
+.EnterClause, .inputURL{
+  /* padding: 13px; */
+  height: 43px;
+}
+select:focus,input:focus{
+  border: none;
+  outline: none;
+}
+/********Update UI End**************/
 /********Confirmation Box CSS : START**************/
 
 #confirmBoxPopupId .button {
@@ -367,3 +407,29 @@ input {
   color: #fff;
 }
 /********Confirmation Box CSS : END**************/
+.testLable{
+  float: left;
+  font-family: Graphik Regular;
+  font-size: 14px;
+}
+.testLable p.labelTitle.upDoc, .labelTitle{
+  color: #fff;
+  margin-bottom: 10px;
+  font-family: Graphik Regular;
+  font-size: 14px;
+  width:256px;
+  display: inline-block;
+}
+/* .testLable p.labelTitle.upDoc{
+  width: 255px;
+} */
+/* #upload_file_status{
+  margin-bottom: 10px;
+} */
+.appendixDropdown{
+  float: left;
+}
+.labelTitle.upDoc{
+  width: 255px;
+  margin-top: 8px;
+}

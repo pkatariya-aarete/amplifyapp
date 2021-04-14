@@ -1,25 +1,47 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { Auth } from "aws-amplify";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import NavBarComponent from './NavBarComponent/NavBarComponent';
+import FileUploadComponent from './FileUploadComponent/FileUploadComponent';
+import ResultsComponent from './ResultsComponent/ResultsComponent';
+
+class App extends React.Component {
+  state = {
+    cognito:null
+  }
+
+  getCurrentUser() {
+    Auth.currentAuthenticatedUser().then(cognito => {
+      this.setState({
+        cognito
+      });
+    });
+  }
+
+  componentDidMount(){
+    this.getCurrentUser()
+  }
+
+  render(){
+    const { authState} = this.props
+    const { cognito } = this.state
+    if (authState === 'signedIn' && cognito !== null ) {
+      return (
+        <div>
+          <Router>
+            <NavBarComponent userAttributes={cognito.attributes}/>
+            <Switch>
+              <Route path='/' exact component={FileUploadComponent} />
+              <Route path='/results' exact component={ResultsComponent} />
+            </Switch>
+          </Router>
+        </div>
+      )
+    } else {
+      return null
+    }   
+  }
 }
 
 export default App;

@@ -1,0 +1,380 @@
+.signup-container,
+.signin-container {
+  width: 50%;
+  float: left;
+  margin: 3% 0px 0px 7%;
+}
+
+.projectName {
+  float: left;
+  color: #e76124;
+  font-size: 40px;
+  font-weight: 500;
+  display: block;
+  font-family: Graphik Medium;
+  margin-bottom: 14%;
+  width: 100%;
+  text-align: left;
+  position: relative;
+}
+.page-Title {
+  color: #ffffff;
+  font-family: "MercuryDisplay-Roman";
+  font-size: 30px;
+  display: block;
+  text-align: left;
+  margin-bottom: 50px;
+}
+.label-fields {
+  height: 22px;
+  color: #ccc;
+  font-family: Graphik Regular;
+  font-size: 14px;
+  line-height: 26px;
+  display: block;
+  margin-bottom: 10px;
+  text-align: left;
+}
+.input-fields {
+  height: 44px;
+  width: 82%;
+  border-radius: 3.02px;
+  background-color: #1a1a1a;
+  border: none;
+  display: block;
+  color: #eaeaea;
+  font-family: Graphik Regular;
+  font-size: 16px;
+  line-height: 26px;
+  margin-bottom: 16px;
+  padding: 0 5%;
+  outline-width: 2px;
+  outline-color: #f19411;
+}
+.createAccount {
+  border-radius: 4.54px;
+  background: linear-gradient(
+    136.64deg,
+    #e76124 0%,
+    #f19411 100%,
+    #f19411 100%
+  );
+  color: #ffffff;
+  font-family: Graphik Medium;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 22px;
+  border: none;
+  margin-top: 14px;
+  float: left;
+  text-transform: uppercase;
+  padding: 12px 20px;
+}
+/* .m-bottom {
+  margin-bottom: 207px;
+} */
+/* .login {
+  width: 113px;
+  float: left;
+} */
+.forget-reset-cont {
+  width: 48%;
+  margin-top: 17px;
+  margin-left: 20px;
+  float: left;
+  line-height: 23px;
+}
+.forgot-password {
+  color: #5f5a5a;
+  font-family: Graphik Regular;
+  font-size: 14px;
+  font-weight: 500;
+  text-align: left;
+}
+.reset-password {
+  color: #fff;
+  font-family: Graphik Regular;
+  font-size: 16px;
+  font-weight: 500;
+  text-align: left;
+  width: 43px;
+}
+.secondary-link-signup,
+.secondary-link-confirm-signup,
+.secondary-link-reset-password {
+  color: #fff;
+  font-family: Graphik Regular;
+  font-size: 16px;
+  font-weight: 500;
+  text-align: left;
+}
+.sign-up-link {
+  height: 22px;
+  width: 83px;
+  color: #f19411;
+  font-family: Graphik Medium;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 26px;
+  margin-top: 26px;
+}
+.clear-both {
+  clear: both;
+}
+.asteric {
+  color: #f19411;
+  margin-left: 4px;
+}
+
+.m-topreset {
+  margin-top: 7px;
+}
+.graphic-regular {
+  font-family: Graphik Regular;
+}
+.filedDevide {
+  width: 46%;
+  float: left;
+}
+.crt-account {
+  clear: both;
+}
+.signIn {
+  /* width: 48%; */
+  margin-top: 10px;
+  /* margin-left: 20px; */
+  float: left;
+  clear: both;
+}
+
+button,
+.link-pointer {
+  cursor: pointer;
+}
+
+/**Forgot Password**/
+#btn-resetPassword,
+#forgot-password-new-password-section {
+  display: none;
+}
+
+.subHead {
+  color: #9b9b9b;
+  font-family: Graphik Regular;
+  font-size: 24px;
+  position: absolute;
+  top: 9px;
+  margin-left: 22px;
+}
+.error-message {
+  color: #ff5353;
+  margin-top: -30px;
+  font-family: Graphik Medium;
+  font-size: 14px;
+}
+.success-message {
+  color: #008000;
+  margin-top: -30px;
+  font-family: Graphik Medium;
+  font-size: 14px;
+}
+.success-password {
+  /*border: 2px solid #008000 !important;*/
+  outline-color: #008000 !important;
+}
+.error-password {
+  border: 2px solid #ff5353 !important;
+}
+input#password:focus,
+input#rpwd-new_password:focus {
+  /*outline: none;*/
+}
+#passwordTooltip span {
+  /*color: #f19411;*/
+  color: #ccc;
+}
+#passwordTooltip {
+  color: #ccc;
+  font-family: Graphik Medium;
+  font-size: 14px;
+  line-height: 21px;
+  width: 260px;
+  /* margin: -58px 3px 0 241px; */
+  margin: 0px 3px 0px 20px;
+  display: none;
+}
+.reset-password-passwordTooltip {
+  margin: -70px 0px 0px 242px !important;
+}
+#passwordTooltip .default {
+  color: #646464;
+  /*padding-left: 10px;*/
+}
+#passwordTooltip .default:before {
+  position: relative;
+  /*left: -9px;*/
+  /*content: "✖";*/
+}
+#passwordTooltip .valid {
+  color: #008000 !important;
+  /*padding-left: 10px;*/
+  margin-left: -11px;
+}
+
+#passwordTooltip .valid:before {
+  position: relative;
+  left: -6px;
+  content: "✔";
+}
+
+/* Add a red text color and an "x" when the requirements are wrong */
+#passwordTooltip .invalid {
+  color: #646464 !important;
+  /*padding-left: 10px;*/
+}
+
+#passwordTooltip .invalid:before {
+  position: relative;
+  /*left: -9px;*/
+  /*content: "✖";*/
+}
+
+@media screen and (min-width: 1400px) {
+  #passwordTooltip {
+    /* margin: -58px 3px 0 290px; */
+    margin: 0px 3px 0px 12px;
+  }
+  .reset-password-passwordTooltip {
+    margin: -76px 0px 0px 290px !important;
+  }
+}
+
+/******Snack Bar CSS : START**************/
+
+#snackbar {
+  font-family: Graphik Medium;
+  visibility: hidden;
+  background-color: #666;
+  color: #fff;
+  text-align: center;
+  border-radius: 2px;
+  padding: 10px;
+  position: fixed;
+  z-index: 1;
+  left: 0px;
+  top: 0px;
+  font-size: 16px;
+  width: 100%;
+}
+
+#snackbar.show {
+  visibility: visible;
+  -webkit-animation: fadein 0.5s, fadeout 0.5s 3.5s;
+  animation: fadein 0.5s, fadeout 0.5s 3.5s;
+}
+
+@-webkit-keyframes fadein {
+  from {
+    top: 0;
+    opacity: 0;
+  }
+  to {
+    top: 30px;
+    opacity: 1;
+  }
+}
+
+@keyframes fadein {
+  from {
+    top: 0;
+    opacity: 0;
+  }
+  to {
+    top: 0px;
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes fadeout {
+  from {
+    top: 0px;
+    opacity: 1;
+  }
+  to {
+    top: 0;
+    opacity: 0;
+  }
+}
+
+@keyframes fadeout {
+  from {
+    top: 0px;
+    opacity: 1;
+  }
+  to {
+    top: 0;
+    opacity: 0;
+  }
+}
+/******Snack Bar CSS: END **************/
+.ui.mini.buttons button{
+background-color: transparent;
+color:#616161
+}
+.docList{
+  background-color: #212121;
+  padding: 4% !important;
+  border-radius: 5px;
+  font-family: Graphik Regular;
+}
+.docList h1{
+  font-family: Graphik Regular;
+  font-size: 14px;
+  margin-top: 7px;
+  color: #c6c6c6;
+}
+.ui.divider, .ui.left.floated.header.uploadFiles,
+.ui.right.floated.header.uploadFiles{
+color: #ffffff;
+}
+.ui.right.floated.header.uploadFiles{
+  margin-left: 16px;
+}
+.ui.divided.list>.item{
+  border-top:1px solid #434343;
+}
+.pageTitleResult{
+  /* margin-left: 80px; */
+  width: 412px !important;
+}
+.ui.left.floated.header.uploadFiles,
+.ui.right.floated.header.uploadFiles{
+  font-size: 16px;
+  font-family: Graphik Regular;
+  margin-top: 10px;
+}
+.sheet-names{
+  display: none !important;
+}
+.react-grid-HeaderCell{
+  background-color: #fff;
+}
+.react-grid-HeaderCell, .react-grid-Cell{
+  border: none;
+  font-size: 14px;
+}
+.react-grid-Cell{
+  background-color: #fafafa;
+}
+.eleven.wide.column{
+  padding-right: 10px !important;
+  padding-left:0 !important;
+}
+.react-grid-Grid, .react-grid-Main{
+  border-radius: 5px !important;
+}
+.uploadFilesBlock, .viewResultsHyperlink, 
+.viewResultsHyperlink:hover{
+  color: #f19411;
+  cursor: pointer
+}

@@ -1,0 +1,76 @@
+/*.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}*/
+
+.ui.fluid.container {
+  color: #fff;
+  width: 100%;
+  background-size:cover !important;                      
+  background-repeat: no-repeat !important;
+  background-position: center center !important;  
+  background-attachment: fixed !important; 
+  /* height: 100vh !important;  */
+  position: unset !important;
+  background-image: url("../assets/images/ocrbg.png") !important;
+}
+.ui.grid {
+  margin: 0;
+  padding: 0;
+}
+.spreadsheet-viewer input,
+.react-grid-HeaderCell,
+.react-grid-Cell,
+.react-grid-Row.react-grid-Row--even:hover,
+.react-grid-Row.react-grid-Row--odd:hover{
+  color:#000;
+  font-family: Graphik Regular;
+  /* background-color: transparent; */
+}
+.sheet-names{
+  display: none !important;
+}
+/* .react-grid-HeaderCell, 
+.react-grid-Cell{
+  width: 100px !important;
+} */
+/* .react-grid-Grid{
+  min-height: 215px !important;
+}
+.react-grid-Canvas{
+  height: 176px !important;
+} */

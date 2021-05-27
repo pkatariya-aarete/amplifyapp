@@ -3,7 +3,7 @@ import { Storage } from "aws-amplify";
 import upload from "./assets/arrow-up.svg";
 import dropbox from "./assets/Drag-Files.svg";
 import "./assets/upload.css";
-import {Link} from 'react-router-dom';
+// import {Link} from 'react-router-dom';
 
 class FileUploadComponent extends React.Component {
   constructor(props) {
@@ -35,11 +35,11 @@ class FileUploadComponent extends React.Component {
     setTimeout(() => {
       this.setState({successMsg: true});
     }, 2000)
-    // setTimeout(function(){ 
-    //   let msg =
-    //             "<p className='submitNoteNew'> <span>File <span>uploaded successfully</span> <span class='uploadFilesBlock'><Link class='viewResultsHyperlink' to='/results'>view results</Link></span> </p>";
-    //           document.getElementById("showMessage").innerHTML = msg;
-    //  }, 3000);
+      // setTimeout(function(){ 
+      //   let msg =
+      //             "<p className='submitNoteNew'> <span>File <span>uploaded successfully</span> <span class='uploadFilesBlock'><Link class='viewResultsHyperlink' to='/results'>view results</Link></span> </p>";
+      //           document.getElementById("showMessage").innerHTML = msg;
+      //  }, 3000);
   }
   uploadFile(event) {
     let files = event.target.files;
@@ -148,12 +148,12 @@ class FileUploadComponent extends React.Component {
     var docx = {
       fileFormat:
         "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-      folderPath: "dev/result-excel/client-groups/cg1/"
+      folderPath: "dev/source-documents-docx/client-groups/cg1/"
     };
 
     var pdf = {
       fileFormat: "application/pdf",
-      folderPath: "dev/result-excel/client-groups/cg1/"
+      folderPath: "dev/source-documents-pdf/client-groups/cg1/"
     };
     var uploadFileCount = 0;
     for (var i = 0; i < filesCount; i++) {
@@ -542,25 +542,25 @@ class FileUploadComponent extends React.Component {
           </div>
           <div>
             <input type="text" className="inputURL" onChange={(event) => this.getUrl(event)}/>
-            <div id="showMessage" style={{float:'left'}}>
+            {/* <div id="showMessage" style={{float:'left'}}>
               {this.state.successMsg ?
               <p className='submitNoteNew'> <span>File <span>uploaded successfully,</span> <span className='uploadFilesBlock'><a className='viewResultsHyperlink' href='/results' >view results.</a></span> </span></p>
               :''}
-            </div>
+            </div> */}
           </div>
           
 
           <div className="crt-account">
             <button
-              id="submitBtn"
-               className={`createAccountUpload ${
-                this.state.url!== '' ? "activeBtn" : "disabled"
-              }`}
-              // className={`createAccountUpload ${
-              //   this.state.fileDetails.length ? "activeBtn" : "disabled"
+              // id="submitBtn"
+              //  className={`createAccountUpload ${
+              //   this.state.url!== '' ? "activeBtn" : "disabled"
               // }`}
-              // onClick={() => this.UploadFilesToS3()}
-              onClick={() => this.ShowMessage()}
+              className={`createAccountUpload ${
+                this.state.fileDetails.length && this.state.url!== '' ? "activeBtn" : "disabled"
+              }`}
+              onClick={() => this.UploadFilesToS3()}
+              // onClick={() => this.ShowMessage()}
             >
               Submit
             </button>

@@ -411,6 +411,7 @@ select:focus,input:focus{
   float: left;
   font-family: Graphik Regular;
   font-size: 14px;
+  width: 100%;
 }
 .testLable p.labelTitle.upDoc, .labelTitle{
   color: #fff;

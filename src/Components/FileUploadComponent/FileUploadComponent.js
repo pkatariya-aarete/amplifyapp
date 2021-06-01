@@ -232,7 +232,6 @@ class FileUploadComponent extends React.Component {
     e.preventDefault();
     e.stopPropagation();
   };
-
   onFileDrop = e => {
     e.preventDefault();
     e.stopPropagation();

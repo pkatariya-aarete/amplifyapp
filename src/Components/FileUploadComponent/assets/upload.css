@@ -180,6 +180,7 @@ input {
   clear: both;
   font-family: Graphik Regular;
   font-size: 14px;
+  width:100%
 }
 .submitNoteNew {
   color: #ccc;

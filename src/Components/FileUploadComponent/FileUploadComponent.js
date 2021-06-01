@@ -541,25 +541,25 @@ class FileUploadComponent extends React.Component {
           </div>
           <div>
             <input type="text" className="inputURL" onChange={(event) => this.getUrl(event)}/>
-            <div id="showMessage" style={{float:'left'}}>
+            {/* <div id="showMessage" style={{float:'left'}}>
               {this.state.successMsg ?
               <p className='submitNoteNew'> <span>File <span>uploaded successfully,</span> <span className='uploadFilesBlock'><a className='viewResultsHyperlink' href='/results' >view results.</a></span> </span></p>
               :''}
-            </div>
+            </div> */}
           </div>
           
 
           <div className="crt-account">
             <button
-              id="submitBtn"
-               className={`createAccountUpload ${
-                this.state.url!== '' ? "activeBtn" : "disabled"
-              }`}
-              // className={`createAccountUpload ${
-              //   this.state.fileDetails.length ? "activeBtn" : "disabled"
+              // id="submitBtn"
+              //  className={`createAccountUpload ${
+              //   this.state.url!== '' ? "activeBtn" : "disabled"
               // }`}
-              // onClick={() => this.UploadFilesToS3()}
-              onClick={() => this.ShowMessage()}
+              className={`createAccountUpload ${
+                this.state.fileDetails.length ? "activeBtn" : "disabled"
+              }`}
+              onClick={() => this.UploadFilesToS3()}
+              // onClick={() => this.ShowMessage()}
             >
               Submit
             </button>

@@ -3,13 +3,13 @@ import { Storage } from "aws-amplify";
 import upload from "./assets/arrow-up.svg";
 import dropbox from "./assets/Drag-Files.svg";
 import "./assets/upload.css";
-import {Link} from 'react-router-dom';
 
 class FileUploadComponent extends React.Component {
   constructor(props) {
     super(props);
     this.uploadFile = this.uploadFile.bind(this);
     this.handleClick = this.handleClick.bind(this);
+    this.handleChange = this.handleChange.bind(this);
     this.deleteFileIndex = 0;
     this.state = {
       fileName: "Choose files",
@@ -19,28 +19,29 @@ class FileUploadComponent extends React.Component {
       revisedFiles: [],
       url:'',
       successMsg:false,
+      selectValue:'cg1'
     };
-  }
+  };
 
-  getUrl(event){
-    if(event.target.value !== ''){
-      this.setState({url: event.target.value})
-    }
-  }
+  // getUrl(event){
+  //   if(event.target.value !== ''){
+  //     this.setState({url: event.target.value})
+  //   }
+  // }
  
-
            
 
-  ShowMessage(){
-    setTimeout(() => {
-      this.setState({successMsg: true});
-    }, 2000)
-    // setTimeout(function(){ 
-    //   let msg =
-    //             "<p className='submitNoteNew'> <span>File <span>uploaded successfully</span> <span class='uploadFilesBlock'><Link class='viewResultsHyperlink' to='/results'>view results</Link></span> </p>";
-    //           document.getElementById("showMessage").innerHTML = msg;
-    //  }, 3000);
-  }
+  // ShowMessage(){
+  //   setTimeout(() => {
+  //     this.setState({successMsg: true});
+  //   }, 2000)
+  //   setTimeout(function(){ 
+  //     let msg =
+  //               "<p className='submitNoteNew'> <span>File <span>uploaded successfully</span> <span class='uploadFilesBlock'><Link class='viewResultsHyperlink' to='/results'>view results</Link></span> </p>";
+  //             document.getElementById("showMessage").innerHTML = msg;
+  //    }, 3000);
+  // }
+
   uploadFile(event) {
     let files = event.target.files;
     let filesTempArray = [];
@@ -144,16 +145,17 @@ class FileUploadComponent extends React.Component {
    
     var files = this.state.fileDetails;
     var filesCount = files.length;
+    var folder = this.state.selectValue;
 
     var docx = {
       fileFormat:
         "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-      folderPath: "dev/result-excel/client-groups/cg1/"
+      folderPath: `dev/source-documents-docx/client-groups/${folder}/`
     };
 
     var pdf = {
       fileFormat: "application/pdf",
-      folderPath: "dev/result-excel/client-groups/cg1/"
+      folderPath: `dev/source-documents-pdf/client-groups/${folder}/`
     };
     var uploadFileCount = 0;
     for (var i = 0; i < filesCount; i++) {
@@ -424,7 +426,9 @@ class FileUploadComponent extends React.Component {
     popup.style.visibility = "hidden";
     popup.style.opacity = "0";
   };
-
+  handleChange(event) {
+    this.setState({ selectValue: event.target.value });
+  }
   render() {
     return (
       <div>
@@ -451,16 +455,18 @@ class FileUploadComponent extends React.Component {
         <div className="page-Title">Upload Document</div>
         <div className="">
           <div className="field-container">
-          <p className="labelTitle">Document Type</p>
-          <p className="labelTitle">Clause</p>
-            <select className="appendixDropdown">
-              <option>Appendix A</option>
-              <option>Appendix B</option>
-              <option>Appendix C</option>
-              <option>Appendix D</option>
+          <p className="labelTitle" style={{float:'left',width:'100%'}}>Template Type</p>
+          {/* <p className="labelTitle">Clause</p> */}
+            <select className="appendixDropdown" style={{width:'502px'}}
+            value={this.state.selectValue}
+            onChange={this.handleChange}>
+              <option>cg1</option>
+              <option>cg2</option>
+              <option>cg3</option>
+              <option>cg4</option>
             </select>
 
-            <input type="text" className="EnterClause"></input>
+            {/* <input type="text" className="EnterClause"></input> */}
   
             <div className="filedDevide1" style={{display:'none'}}>
               <input
@@ -534,19 +540,19 @@ class FileUploadComponent extends React.Component {
               delete all files.
             </p>
           </div>
-          <div className="testLable">
+          {/* <div className="testLable">
             <p className="labelTitle upDoc">Document URL</p>
-            {/* <p className="labelTitle upDoc">Clause</p> */}
-            {/* <input type="text" className="EnterClause"></input> */}
-          </div>
-          <div>
+            <p className="labelTitle upDoc">Clause</p>
+            <input type="text" className="EnterClause"></input>
+          </div> */}
+          {/* <div>
             <input type="text" className="inputURL" onChange={(event) => this.getUrl(event)}/>
-            {/* <div id="showMessage" style={{float:'left'}}>
+            <div id="showMessage" style={{float:'left'}}>
               {this.state.successMsg ?
               <p className='submitNoteNew'> <span>File <span>uploaded successfully,</span> <span className='uploadFilesBlock'><a className='viewResultsHyperlink' href='/results' >view results.</a></span> </span></p>
               :''}
-            </div> */}
-          </div>
+            </div>
+          </div> */}
           
 
           <div className="crt-account">

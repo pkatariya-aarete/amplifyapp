@@ -17,7 +17,7 @@ class ResultsComponent extends React.Component {
     JsonFileContent: "",
     previewFile: ""
   }
-
+  
   listResults() {
     Storage.list(filePath, { customPrefix: { public: ''} })
       .then(result => {
@@ -26,6 +26,7 @@ class ResultsComponent extends React.Component {
       })
       .catch(err => console.log(err));
   }
+  
 
   // getFileUrl(event) {
   //   Storage.get(event, { customPrefix: { public: ''} })
@@ -184,6 +185,7 @@ class ResultsComponent extends React.Component {
                   ) : ''}
               </Grid.Column> */}
             </Grid.Row>
+            
           </Grid>
       </div>
     )

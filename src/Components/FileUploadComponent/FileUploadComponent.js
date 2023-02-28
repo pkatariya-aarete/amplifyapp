@@ -3,7 +3,13 @@ import { Storage } from "aws-amplify";
 import upload from "./assets/arrow-up.svg";
 import dropbox from "./assets/Drag-Files.svg";
 import "./assets/upload.css";
+import { Button, List, Grid, Icon, Segment, Header } from "semantic-ui-react";
 
+
+var jsonData = {
+  "client_group":"cg1",
+  "files_count":"1000"
+ }
 class FileUploadComponent extends React.Component {
   constructor(props) {
     super(props);
@@ -22,6 +28,14 @@ class FileUploadComponent extends React.Component {
       selectValue:'cg1'
     };
   };
+  
+  
+  triggerLambda(){
+    fetch('https://5dhtijvxb2.execute-api.us-east-1.amazonaws.com/process-files', {  
+    method: 'POST', 
+    body: JSON.stringify(jsonData), 
+  })
+  }
 
   // getUrl(event){
   //   if(event.target.value !== ''){
@@ -573,6 +587,12 @@ class FileUploadComponent extends React.Component {
             <button className="clearAll" onClick={() => this.clearAllFiles()}>
               CLEAR ALL
             </button>
+
+            <button className="processFile activeBtn"
+                  onClick = {() => this.triggerLambda()}
+              >
+                Process File
+              </button>
           </div>
         </div>
       </div>

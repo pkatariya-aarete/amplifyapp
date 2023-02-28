@@ -241,7 +241,6 @@ input {
 }
 .createAccountUpload {
   border-radius: 4.54px;
-
   color: #ffffff;
   font-family: Graphik Medium;
   font-size: 14px;
@@ -433,4 +432,17 @@ select:focus,input:focus{
 .labelTitle.upDoc{
   width: 255px;
   margin-top: 8px;
+}
+.processFile {
+  border-radius: 4.54px;
+  color: #ffffff;
+  font-family: Graphik Medium;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 22px;
+  border: none;
+  margin-top: 14px;
+  /* float: left; */
+  text-transform: uppercase;
+  padding: 12px 20px;
 }

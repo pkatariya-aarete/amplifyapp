@@ -5,7 +5,6 @@ import dropbox from "./assets/Drag-Files.svg";
 import "./assets/upload.css";
 import { Button, List, Grid, Icon, Segment, Header } from "semantic-ui-react";
 
-
 var jsonData = {
   "client_group":"cg1",
   "files_count":"1000"
